@@ -1,0 +1,31 @@
+#pragma kernel CSMain
+
+RWTexture2D<float4> Result;
+StructuredBuffer<float3> Agents;
+int AgentCount;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    int2 pixel = id.xy;
+    float2 uv = pixel / float2(320, 320);
+    
+    float intensity = 0.0;
+
+    for (int i = 0; i < AgentCount; i++)
+    {
+        float2 agentPos = Agents[i].xy;
+        float range = Agents[i].z / 320.0;
+        
+        float2 diff = uv - agentPos;
+        float distSq = dot(diff, diff);
+        float influence = range * range / (distSq + 0.0001);
+
+        intensity += influence;
+    }
+
+    float threshold = 1.0;
+    float alpha = intensity > threshold ? 0.0 : (intensity > threshold * 0.7 ? 0.8 : 1.0);
+
+    Result[pixel] = float4(0, 0, 0, alpha);
+}
