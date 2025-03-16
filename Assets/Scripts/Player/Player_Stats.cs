@@ -37,6 +37,8 @@ public class Player_Stats : MonoBehaviour
 
     public void SetMaxSteps()
     {
+        if (stepCount >= maxStepCount) return;
+        
         stepCount = maxStepCount;
         UpdateStepCountText();
     }

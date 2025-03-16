@@ -59,7 +59,7 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
         isMoving = true;
     }
 
-    private void PatrolMovement()
+    internal void PatrolMovement()
     {
         if (CanMove(currentDirection))
         {

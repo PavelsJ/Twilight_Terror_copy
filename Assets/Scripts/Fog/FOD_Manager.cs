@@ -1,45 +1,43 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 namespace FODMapping
 {
     public class FOD_Manager : MonoBehaviour
     {
-        [Header("Coroutines / Actions")]
+        [Header("Coroutines / Actions")] 
         private Coroutine FOVCoroutine;
         private Coroutine removeAgentsCoroutine;
-        
+
         public event Action OnFogInitialized;
         public bool IsFogInitialized { get; private set; }
         private bool isInitialized = false;
-        
+
         private static readonly Vector2 textureSize = new(320, 320);
 
-        [Header("Fog Settings")]
+        [Header("Fog Settings")] 
         [SerializeField] private Color fogColor = new(0.1f, 0.1f, 0.1f, 0.7f);
+
         [SerializeField] private float updateInterval = 0.02f;
-        
-        [Header("Shader Initialization")]
+
+        [Header("Shader Initialization")] 
         [SerializeField] private Shader fogShader;
         [SerializeField] private ComputeShader computeShader;
-        
+
         private Material fogMaterial;
         private RenderTexture fogTexture;
 
-        [Header("Agent Dictionary")]
+        [Header("Agent Dictionary")] 
         public List<FOD_Agent> agents = new();
         private const int maxAgentCount = 128;
-        
-        [Header("Buffers")]
-        private readonly List<Vector3> agentData = new(maxAgentCount);
+
+        [Header("Buffers")] 
         private ComputeBuffer agentsBuffer;
 
-        [Header("References")]
+        [Header("References")] 
         public Grid_Manager grid;
         private Animator animator;
 
@@ -53,29 +51,27 @@ namespace FODMapping
         private void Start()
         {
             animator = GetComponent<Animator>();
-            
+
             fogTexture = new RenderTexture((int)textureSize.x, (int)textureSize.y, 0, RenderTextureFormat.ARGB32)
             {
-                enableRandomWrite = true, 
-                filterMode = FilterMode.Point 
+                enableRandomWrite = true,
+                filterMode = FilterMode.Point
             };
-            
+
             agentsBuffer = new ComputeBuffer(maxAgentCount, sizeof(float) * 3);
-            
+
             fogMaterial.SetTexture("_FogTexture", fogTexture);
             fogMaterial.SetColor("_FogColor", fogColor);
             fogMaterial.SetVector("_TextureSize", textureSize);
-            
+
             isInitialized = true;
-            
-            // EnableFOV();
         }
-        
+
         // Fog Activation
         public IEnumerator EnableInstantly()
         {
             yield return new WaitForSeconds(0.1f);
-            
+
             EnableFOV();
 
             OnFogInitialized?.Invoke();
@@ -85,9 +81,9 @@ namespace FODMapping
         public IEnumerator EnableWithDelay(float delay)
         {
             yield return new WaitUntil(() => isInitialized);
-            
+
             SetFogVisibility(true);
-            
+
             yield return new WaitForSeconds(delay);
             EnableFOV();
 
@@ -120,39 +116,35 @@ namespace FODMapping
                 UpdateShaderValues();
             }
         }
-        
+
         private void UpdateShaderValues()
         {
-            if(agents.Count < 1) return;
-            
-            agentData.Clear();
+            if (agents.Count < 1) return;
             
             Vector2 worldMin = transform.position - (transform.lossyScale / 2);
             Vector2 worldSize = transform.lossyScale;
+            
+            Vector3[] agentData = new Vector3[maxAgentCount];
+            int agentCount = Mathf.Min(agents.Count, maxAgentCount);
 
-            foreach (var agent in agents)
+            for (int i = 0; i < agentCount; i++)
             {
+                var agent = agents[i];
                 if (!agent.enabled && agent.isActive) continue;
 
                 Vector2 worldPos = agent.transform.position;
                 Vector2 normalizedPos = (worldPos - worldMin) / worldSize;
                 float correctedRadius = (agent.sightRange / worldSize.y) * 10;
-                
-                agentData.Add(new Vector3(normalizedPos.x, normalizedPos.y, correctedRadius));
+
+                agentData[i] = new Vector3(normalizedPos.x, normalizedPos.y, correctedRadius);
             }
-
-            fogMaterial.SetInt("_AgentCount", agentData.Count);
-
-            if (agentData.Count > 0)
-            {
-                agentsBuffer.SetData(agentData);
-                
-                fogMaterial.SetBuffer("_Agents", agentsBuffer);
-            }
-
-            fogMaterial.SetColor("_FogColor", fogColor);
+            
+            agentsBuffer.SetData(agentData);
+            
+            fogMaterial.SetInt("_AgentCount", agentCount);
+            fogMaterial.SetBuffer("_Agents", agentsBuffer);
         }
-        
+
         // Agent Registry
         public void FindAllFOVAgents()
         {
@@ -175,7 +167,7 @@ namespace FODMapping
                 agents.Remove(agent);
             }
         }
-        
+
         // Player Death
         public void RemoveAgentsGradually()
         {
@@ -183,7 +175,7 @@ namespace FODMapping
             {
                 StopCoroutine(removeAgentsCoroutine);
             }
-            
+
             removeAgentsCoroutine = StartCoroutine(RemoveAgentsCoroutine());
         }
 
@@ -194,13 +186,13 @@ namespace FODMapping
                 agent.EndAgent(time);
                 yield return new WaitForSeconds(time + 0.1f);
             }
-            
+
             DisableFOV();
             Debug.Log("Game Over");
-            
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
+
         // Player End of a Room
         public IEnumerator DisableWithDelay()
         {
@@ -208,26 +200,23 @@ namespace FODMapping
             {
                 StopCoroutine(removeAgentsCoroutine);
             }
-            
+
             foreach (var agent in agents)
             {
                 agent.EndAgent(0.4f);
             }
-            
+
             yield return new WaitForSeconds(0.5f);
 
             if (grid != null)
             {
                 grid.ChangeGridState();
             }
-            
+
             DisableFOV();
             SetFogVisibility(false);
-            
-            // yield return new WaitForSeconds(delay);
-            // gameObject.SetActive(false);
         }
-        
+
         public void SetFogVisibility(bool visible)
         {
             if (visible)
@@ -238,9 +227,9 @@ namespace FODMapping
             {
                 animator.SetTrigger("FadeOut");
             }
-            
+
         }
-        
+
         private void OnDestroy()
         {
             agentsBuffer?.Release();

@@ -1,31 +1,34 @@
 #pragma kernel CSMain
 
-RWTexture2D<float4> Result;
-StructuredBuffer<float3> Agents;
-int AgentCount;
+RWTexture2D<float4> _Result;
+StructuredBuffer<float3> _Agents;
+int _AgentCount;  // Количество агентов — остаётся int
+int2 _TextureSize;  // Размер текстуры — теперь int2 для согласованности
 
 [numthreads(8, 8, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-    int2 pixel = id.xy;
-    float2 uv = pixel / float2(320, 320);
-    
+    // Преобразуем unsigned в signed для сравнения с _TextureSize
+    if (int(id.x) >= _TextureSize.x || int(id.y) >= _TextureSize.y) return;
+
+    float2 uv = float2(id.xy) / float2(_TextureSize);
     float intensity = 0.0;
 
-    for (int i = 0; i < AgentCount; i++)
+    for (int i = 0; i < _AgentCount; i++)
     {
-        float2 agentPos = Agents[i].xy;
-        float range = Agents[i].z / 320.0;
-        
+        float2 agentPos = _Agents[i].xy;
+        float range = _Agents[i].z / float(_TextureSize.x);
+
         float2 diff = uv - agentPos;
-        float distSq = dot(diff, diff);
-        float influence = range * range / (distSq + 0.0001);
+        float sqrDist = dot(diff, diff);
+        float influence = range * range / (sqrDist + 0.0001);
 
         intensity += influence;
     }
 
     float threshold = 1.0;
-    float alpha = intensity > threshold ? 0.0 : (intensity > threshold * 0.7 ? 0.8 : 1.0);
-
-    Result[pixel] = float4(0, 0, 0, alpha);
+    float4 fogColor = float4(0.1, 0.1, 0.1, 0.7);
+    float alpha = 1.0 - smoothstep(0.3, threshold, intensity);
+    
+    _Result[int2(id.xy)] = float4(fogColor.rgb, alpha);
 }
