@@ -10,7 +10,9 @@ public class Light_Switch_Interaction : MonoBehaviour
     public Sprite sprite;
     
     public Bed_Interaction bedInteraction;
+    
     public Checkpoint_Interaction[] checkpointInteractions;
+    public GameObject[] hintInteractions;
     
     private FOD_Manager manager;
     private Transform player;
@@ -47,6 +49,14 @@ public class Light_Switch_Interaction : MonoBehaviour
             foreach (Checkpoint_Interaction checkpoint in checkpointInteractions)
             {
                 checkpoint.enabled = false;
+            }
+        }
+        
+        if (hintInteractions.Length > 0)
+        {
+            foreach (GameObject hint in hintInteractions)
+            {
+                hint.SetActive(true);
             }
         }
         

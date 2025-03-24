@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ab675541609364393b83cfff5ab98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 529224704539608602, guid: 8286d98568273a44d92418a8f336799f, type: 3}
+  UIprefab: {fileID: 529224704539608602, guid: 20018af19e3e4eb4e84882411c2d806b, type: 3}
   chestOpenSprite: {fileID: 21300000, guid: 5dc90ab5f50753342b30d25b0c5c00a0, type: 3}

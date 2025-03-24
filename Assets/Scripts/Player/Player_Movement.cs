@@ -77,6 +77,9 @@ public class Player_Movement : MonoBehaviour
         agent.enabled = true;
     }
 
+    private float inputDelay = 0.01f; 
+    private float inputTimer = 0f;
+    
     void Update()
     {
         if (!isDead)
@@ -86,6 +89,12 @@ public class Player_Movement : MonoBehaviour
                 trapTimer -= Time.deltaTime;
                 return;
             }
+            
+            if (inputTimer > 0f)
+            {
+                inputTimer -= Time.deltaTime;
+                return;
+            }
 
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
@@ -93,6 +102,7 @@ public class Player_Movement : MonoBehaviour
                 if (direction != Vector3.zero && !isDisable)
                 {
                     HandleMove(direction);
+                    inputTimer = inputDelay;
                 }
             }
         }
