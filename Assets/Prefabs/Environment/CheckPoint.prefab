@@ -110,6 +110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1519636184301533432}
   - {fileID: 4841170481942994437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerabilityDistance: 2
+  fire: {fileID: 2403351811466051731}
 --- !u!114 &367752185727781047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +195,7 @@ MonoBehaviour:
   isActive: 0
   deactivateOnEnd: 0
   sightRange: 48
+  sightRangeDifference: 2
   sightTransparency: 1
   flickering: 1
   flickeringSpeed: 4
@@ -241,3 +244,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
+--- !u!1 &8743223441342893512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519636184301533432}
+  - component: {fileID: 2403351811466051731}
+  m_Layer: 0
+  m_Name: Fire_Fly_Space
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1519636184301533432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743223441342893512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6181892950871069382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2403351811466051731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743223441342893512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da95c0ffc103cb498019ef7e20cc1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireflyCountMin: 2
+  fireflyCountMax: 5
+  areaSize: {x: 2, y: 2}
+  speedMin: 0.2
+  speedMax: 0.5
+  avoidSpeed: 4
+  avoidDistance: 2
+  fireflyPrefab: {fileID: 8519541532418773960, guid: e266571514023d64996135b27b085f45, type: 3}
+  player: {fileID: 0}

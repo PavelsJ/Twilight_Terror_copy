@@ -10,8 +10,8 @@ public class Checkpoint_Interaction : MonoBehaviour
     private bool isActive = false;
     private bool isInvincible = false;
     
+    public Fire_Fly_Interation fire;
     private Transform player;
-    
     private FOD_Agent agent;
 
     private void Awake()
@@ -51,10 +51,13 @@ public class Checkpoint_Interaction : MonoBehaviour
     private void ActivateCheckpoint()
     {
         isActive = true;
+        
         if (agent != null)
         {
             agent.enabled = true;
         }
+        
+        fire.Deactivate();
         Debug.Log("Checkpoint Activated!");
     }
 }

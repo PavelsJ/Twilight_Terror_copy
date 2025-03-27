@@ -200,12 +200,10 @@ MonoBehaviour:
   firstDirection: {x: 1, y: 0}
   speed: 5
   isMoving: 0
-  isChasingPlayer: 0
   movePoint: {fileID: 159853900327375097}
-  player: {fileID: 0}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2176
   boxLayer:
     serializedVersion: 2
     m_Bits: 64

@@ -12,7 +12,8 @@ public class Light_Switch_Interaction : MonoBehaviour
     public Bed_Interaction bedInteraction;
     
     public Checkpoint_Interaction[] checkpointInteractions;
-    public GameObject[] hintInteractions;
+    public GameObject hintToShow;
+    public GameObject hintToHide;
     
     private FOD_Manager manager;
     private Transform player;
@@ -52,12 +53,14 @@ public class Light_Switch_Interaction : MonoBehaviour
             }
         }
         
-        if (hintInteractions.Length > 0)
+        if (hintToShow != null)
         {
-            foreach (GameObject hint in hintInteractions)
-            {
-                hint.SetActive(true);
-            }
+            hintToShow.SetActive(true);
+        }
+
+        if (hintToHide != null)
+        {
+            hintToHide.SetActive(false);
         }
         
         if (bedInteraction != null)

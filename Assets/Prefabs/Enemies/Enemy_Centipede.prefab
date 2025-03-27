@@ -188,12 +188,12 @@ MonoBehaviour:
   isMoving: 1
   player: {fileID: 0}
   movePoint: {fileID: 3131541832222989814}
-  groundLayer:
+  wallLayer:
     serializedVersion: 2
-    m_Bits: 256
-  copy: {fileID: 0}
+    m_Bits: 2176
   detectionRange: 3
   spriteMask: {fileID: 7400467199684872965}
+  copy: {fileID: 0}
 --- !u!114 &5075396522916209073
 MonoBehaviour:
   m_ObjectHideFlags: 0

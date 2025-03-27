@@ -32,7 +32,7 @@ public class Enemy_Dung_Eater_Movement : MonoBehaviour, IEnemy, IInteractable
         
         if (movePoint != null)
         {
-            movePoint.parent = null;
+            movePoint.parent = PathFinding_Manager.Instance.transform;
         }
         
         StartCoroutine(DelayedStart());

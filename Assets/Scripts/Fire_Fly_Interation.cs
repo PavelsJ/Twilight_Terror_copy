@@ -1,93 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace FODMapping
+public class Fire_Fly_Interation : MonoBehaviour
 {
-    public class Fire_Fly_Interation : MonoBehaviour
+    [Header("Firefly Count")]
+    public int fireflyCountMin = 5;  
+    public int fireflyCountMax = 10;  
+
+    [Header("Flight Area")]
+    public Vector2 areaSize = new Vector2(5f, 5f);  
+
+    [Header("Speed Settings")]
+    public float speedMin = 0.2f;  
+    public float speedMax = 0.5f;  
+
+    [Header("Player Avoidance")]
+    public float avoidSpeed = 4f;  
+    public float avoidDistance = 2f;  
+
+    [Header("References")]
+    public GameObject fireflyPrefab;  
+    public Transform player;  
+
+    private List<Fire_Fly> fireflies = new List<Fire_Fly>();
+
+    void Start()
     {
-        public float maxRange = 1f;
-        public float speed = 1f;
-        public float sightRange = 1f;
-        public float fleeDistance = 2f;
-        private Vector3 origin;
-        private bool fleeing;
-        private Transform player;
-
-        private void Start()
+        int fireflyCount = Random.Range(fireflyCountMin, fireflyCountMax + 1); // Случайное количество
+        for (int i = 0; i < fireflyCount; i++)
         {
-            origin = transform.position;
-            StartCoroutine(MoveRandomly());
+            Vector2 randomPos = GetRandomPosition();
+
+            GameObject newFirefly = Instantiate(fireflyPrefab, randomPos, Quaternion.identity, transform);
+            Fire_Fly fireflyScript = newFirefly.AddComponent<Fire_Fly>();
+
+            float randomSpeed = Random.Range(speedMin, speedMax);
+            fireflyScript.Initialize(this, randomPos, randomSpeed);
+            
+            fireflies.Add(fireflyScript);
         }
+    }
 
-        private void Update()
-        {
-            if (player != null)
-            {
-                float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-                if (distanceToPlayer < fleeDistance && !fleeing)
-                {
-                    fleeing = true;
-                    StartCoroutine(Flee());
-                }
-                else if (distanceToPlayer > fleeDistance && fleeing)
-                {
-                    fleeing = false;
-                    StartCoroutine(ReturnToOrigin());
-                }
-            }
-        }
+    public Vector2 GetRandomPosition()
+    {
+        return (Vector2)transform.position + new Vector2(
+            Random.Range(-areaSize.x / 2, areaSize.x / 2),
+            Random.Range(-areaSize.y / 2, areaSize.y / 2)
+        );
+    }
 
-        public void SetPlayer(Transform playerTransform)
-        {
-            player = playerTransform;
-        }
+    public Vector2 GetPlayerPosition()
+    {
+        return player.position;
+    }
 
-        private IEnumerator MoveRandomly()
-        {
-            while (true)
-            {
-                if (!fleeing)
-                {
-                    Vector3 randomDirection = Random.insideUnitCircle * maxRange;
-                    Vector3 targetPos = origin + new Vector3(randomDirection.x, randomDirection.y, 0f);
-                    float journey = 0f;
-                    float duration = Random.Range(0.5f, 1.5f);
-                    Vector3 startPos = transform.position;
-                    while (journey < duration)
-                    {
-                        transform.position = Vector3.Lerp(startPos, targetPos, journey / duration);
-                        journey += Time.deltaTime * speed;
-                        yield return null;
-                    }
-                }
-                yield return new WaitForSeconds(Random.Range(0.5f, 1f));
-            }
-        }
+    public void Deactivate()
+    {
+        StartCoroutine(FadeOutFireflies());
+    }
 
-        private IEnumerator Flee()
+    private IEnumerator FadeOutFireflies()
+    {
+        for (int i = fireflies.Count - 1; i >= 0; i--)
         {
-            Vector3 direction = (transform.position - player.position).normalized * fleeDistance;
-            Vector3 targetPos = transform.position + direction;
-            float journey = 0f;
-            while (journey < 1f)
-            {
-                transform.position = Vector3.Lerp(transform.position, targetPos, journey);
-                journey += Time.deltaTime * speed;
-                yield return null;
-            }
-        }
-
-        private IEnumerator ReturnToOrigin()
-        {
-            float journey = 0f;
-            Vector3 startPos = transform.position;
-            while (journey < 1f)
-            {
-                transform.position = Vector3.Lerp(startPos, origin, journey);
-                journey += Time.deltaTime * speed;
-                yield return null;
-            }
+            yield return fireflies[i].FadeOut(); 
+            fireflies[i].gameObject.SetActive(false);
+            fireflies.RemoveAt(i);
         }
     }
 }

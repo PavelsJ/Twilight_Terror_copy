@@ -12,11 +12,13 @@ public class FOD_Agent : MonoBehaviour
     
     [Header("Agent Customization")]
     [Range(0.0f, 480.0f)] public float sightRange = 50.0f;
+    [Range(0.1f, 10)] public float sightRangeDifference = 2f;
     [Range(0.0f, 1.0f)] public float sightTransparency = 0.5f;
 
     [Header("Light_Flickering")]
     public bool flickering = true;
     public float flickeringSpeed = 4;
+    private float curFlickeringSpeed = 4;
 
     private float baseRadius = 0;
     private float targetRadius;
@@ -31,10 +33,11 @@ public class FOD_Agent : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<FOD_Manager>(true);
-        
+
+        curFlickeringSpeed = flickeringSpeed;
         currentRadius = sightRange;
         baseRadius = sightRange;
-        targetRadius = baseRadius - 2.0f;
+        targetRadius = baseRadius - sightRangeDifference;
     }
 
     private void OnEnable()
@@ -109,13 +112,13 @@ public class FOD_Agent : MonoBehaviour
         StartCoroutine(ChangeRadiusSmoothly(0, currentRadius, duration));
     }
 
-    public void EndAgent(float delay = 0.7f)
+    public void EndAgent(float duration = 0.7f)
     {
         StopFlickering();
         
         if (gameObject.activeInHierarchy)
         {
-            StartCoroutine(FadeOut(delay));
+            StartCoroutine(FadeOut(duration));
         }
     }
     
@@ -151,6 +154,8 @@ public class FOD_Agent : MonoBehaviour
             StopCoroutine(updateRoutine);
             updateRoutine = null;
         }
+        
+        
     }
 
     private IEnumerator UpdateAgent()
@@ -171,7 +176,7 @@ public class FOD_Agent : MonoBehaviour
         if (Mathf.Abs(sightRange - targetRadius) < 0.1f)
         {
             increasing = !increasing;
-            targetRadius = increasing ? baseRadius : baseRadius - 2.0f;
+            targetRadius = increasing ? baseRadius : baseRadius - sightRangeDifference;
         }
     }
     
@@ -180,21 +185,26 @@ public class FOD_Agent : MonoBehaviour
         currentRadius = newRadius;
         
         StopFlickering();
-        StartCoroutine(ChangeRadiusSmoothly(sightRange, currentRadius));
+        updateRoutine = StartCoroutine(ChangeRadiusSmoothly(sightRange, currentRadius));
         
-        flickeringSpeed += 6;
+        curFlickeringSpeed += 6;
+        flickeringSpeed = curFlickeringSpeed;
     }
     
     public void SetMinRadiusValue()
     {
-        StopFlickering();
-        StartCoroutine(ChangeRadiusSmoothly(sightRange, 22));
+        StopFlickering(); 
+        updateRoutine = StartCoroutine(ChangeRadiusSmoothly(sightRange, 22));
+        
+        flickeringSpeed = 16;
     }
 
     public void SetMaxRadiusValue()
     {
         StopFlickering();
-        StartCoroutine(ChangeRadiusSmoothly(sightRange, currentRadius));
+        updateRoutine = StartCoroutine(ChangeRadiusSmoothly(sightRange, currentRadius));
+        
+        flickeringSpeed = curFlickeringSpeed;
     }
 
     private IEnumerator ChangeRadiusSmoothly(float start, float end, float duration = 1)
@@ -206,11 +216,18 @@ public class FOD_Agent : MonoBehaviour
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
+        
         sightRange = end;
         baseRadius = end;
-        targetRadius = baseRadius - 2.0f;
+        targetRadius = baseRadius - sightRangeDifference;
+
+        updateRoutine = null;
         
         StartFlickering();
     }
 
+    public float GetRadius()
+    {
+        return currentRadius;
+    }
 }

@@ -29,7 +29,7 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
 
         if (movePoint != null)
         {
-            movePoint.parent = null;
+            movePoint.parent = PathFinding_Manager.Instance.transform;
         }
         
         currentDirection = firstDirection;

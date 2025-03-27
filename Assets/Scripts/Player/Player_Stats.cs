@@ -68,8 +68,8 @@ public class Player_Stats : MonoBehaviour
             healthSlot.sprite = damagedHealthSlot;
             
            
-            float radius = agent.sightRange;
-            agent.ChangeRadiusValue(radius - 8);
+            float radius = agent.GetRadius();
+            agent.ChangeRadiusValue(radius - 12);
             
             if (playerLives <= 0)
             {

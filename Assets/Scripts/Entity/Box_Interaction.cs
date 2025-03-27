@@ -10,7 +10,6 @@ public class Box_Interaction : MonoBehaviour
     
     public LayerMask wallLayer;
     public LayerMask voidLayer;
-    public LayerMask boxLayer;
     
     private Animator animator;
 
@@ -31,8 +30,7 @@ public class Box_Interaction : MonoBehaviour
                 StartCoroutine(ToggleBox());
                 return true;
             }
-            else if (!Physics2D.OverlapPoint(targetPosition, wallLayer) &&
-                     !Physics2D.OverlapPoint(targetPosition, boxLayer))
+            else if (!Physics2D.OverlapPoint(targetPosition, wallLayer))
             {
                 Move(targetPosition);
                 return true;

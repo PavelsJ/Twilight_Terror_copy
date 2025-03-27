@@ -139,7 +139,7 @@ MonoBehaviour:
   movePoint: {fileID: 5689023867204285064}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2176
   boxLayer:
     serializedVersion: 2
     m_Bits: 64

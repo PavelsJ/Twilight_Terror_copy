@@ -4,84 +4,59 @@ using UnityEngine;
 
 public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractable
 {
-    [Header("Spider Settings")]
-    private Vector3 currentDirection;
-    public float chaseDistance = 1f;
+    [Header("Shadow Settings")]
+    public float chaseDistance = 3.5f;
     
     public float speed = 5;
     public bool isNear = false;
     
     private bool isMoving = false;
-    private bool isChasingPlayer = false;
+    private int moveCooldown = 0;
     
     [Header("Transform References")] 
     public Transform movePoint; 
-    private Transform player;
-    
-    private Transform startPosition;
-    
-    [Header("Layer Settings")] 
-    public LayerMask groundLayer;
-    public LayerMask boxLayer;
+    public Transform player;
     
     [Header("Compounds")]
     public SpriteMask spriteMask;
     public GameObject bloodSplash;
+    private FOD_Agent fodAgent; 
     
-    private Queue<Vector3> pathQueue = new Queue<Vector3>();
+    private readonly Queue<Vector3> recentPositions = new Queue<Vector3>(); 
+    private const int recentPositionLimit = 3;
     
     void Start()
     {
         Player_Movement_Manager.Instance.RegisterEnemy(this);
-        
-        player = FindObjectOfType<Player_Movement>(true).transform;
-        
-        startPosition = transform;
 
         if (movePoint != null)
         {
-            movePoint.parent = null;
+            movePoint.parent = PathFinding_Manager.Instance.transform;
         }
+        
+        fodAgent = player.GetComponent<FOD_Agent>();
+        spriteMask.enabled = false;
     }
     
     public void OnPlayerMoved()
     {
         if (isMoving || movePoint == null) return;
 
-        if (isChasingPlayer)
+        if (isNear)
         {
-            if (isNear && player != null)
-            {
-                MoveTowardsTarget(player);
-            }
-            else
-            {
-                MoveTowardsTarget(startPosition);
-            }
-        
-            isMoving = true;
-        }
-    }
+            moveCooldown++;
 
-    public void Activate()
-    {
-        isChasingPlayer = true;
+            if (moveCooldown % 2 == 0)
+            {
+                MoveTowardsTarget();
+                isMoving = true;
+            }
+        }
     }
     
     private void Update()
     {
-        if (!isChasingPlayer) return;
-        
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        
-        if (distanceToPlayer <= chaseDistance)
-        {
-            isNear = true;
-        }
-        else
-        {
-            isNear = false;
-        }
+        CheckDistanceToPlayer();
         
         if (isMoving && movePoint != null)
         {
@@ -92,83 +67,54 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
                 isMoving = false; 
             }
         }
-    }
-    
-    private void MoveTowardsTarget(Transform target)
-    {
-        List<Vector3> path = CalculatePath(movePoint.position, target.position);
         
-        if (path != null && path.Count > 1) 
+        if (!isNear)
         {
-            pathQueue.Clear();
-            for (int i = 1; i < path.Count; i++) 
-            {
-                pathQueue.Enqueue(path[i]);
-            }
-
-            if (pathQueue.Count > 0)
-            {
-                movePoint.position = pathQueue.Dequeue();
-            }
+            moveCooldown = 0;
         }
     }
     
-    private List<Vector3> CalculatePath(Vector3 start, Vector3 goal)
+    private void CheckDistanceToPlayer()
     {
-        Queue<Vector3> frontier = new Queue<Vector3>();
-        frontier.Enqueue(start);
+        if (player == null) return;
 
-        Dictionary<Vector3, Vector3> cameFrom = new Dictionary<Vector3, Vector3>();
-        cameFrom[start] = start;
+        float sqrDistance = (player.position - transform.position).sqrMagnitude;
+        bool isWithinRange = sqrDistance <= chaseDistance * chaseDistance;
 
-        while (frontier.Count > 0)
+        if (isWithinRange != isNear)
         {
-            Vector3 current = frontier.Dequeue();
+            isNear = isWithinRange;
+            spriteMask.enabled = isNear;
 
-            if (current == goal)
+            if (fodAgent != null)
             {
-                return ReconstructPath(cameFrom, current);
-            }
-
-            foreach (Vector3 neighbor in GetNeighbors(current))
-            {
-                if (!cameFrom.ContainsKey(neighbor))
+                if (isNear)
                 {
-                    frontier.Enqueue(neighbor);
-                    cameFrom[neighbor] = current;
+                    fodAgent.SetMinRadiusValue();
+                }
+                else
+                {
+                    fodAgent.SetMaxRadiusValue();
                 }
             }
         }
-
-        return null; // Если пути нет
     }
-
-    private List<Vector3> ReconstructPath(Dictionary<Vector3, Vector3> cameFrom, Vector3 current)
+    
+    private void MoveTowardsTarget()
     {
-        List<Vector3> path = new List<Vector3> { current };
-        while (cameFrom[current] != current)
+        List<Vector3> path = PathFinding_Manager.Instance.CalculateAStarPath(movePoint.position, player.position, new HashSet<Vector3>(recentPositions));
+        if (path != null && path.Count > 1)
         {
-            current = cameFrom[current];
-            path.Insert(0, current);
-        }
-        return path;
-    }
+            movePoint.position = path[1];
 
-    private List<Vector3> GetNeighbors(Vector3 position)
-    {
-        Vector3[] possibleMoves = { Vector3.up, Vector3.down, Vector3.left, Vector3.right };
-        List<Vector3> neighbors = new List<Vector3>();
-
-        foreach (Vector3 move in possibleMoves)
-        {
-            Vector3 targetPosition = position + move;
-            if (!Physics2D.OverlapPoint(targetPosition, boxLayer) && Physics2D.OverlapPoint(targetPosition, groundLayer))
+            recentPositions.Enqueue(movePoint.position);
+            if (recentPositions.Count > recentPositionLimit)
             {
-                neighbors.Add(targetPosition);
+                recentPositions.Dequeue();
             }
-        }
 
-        return neighbors;
+            isMoving = true;
+        }
     }
     
     public void DestroyObject()

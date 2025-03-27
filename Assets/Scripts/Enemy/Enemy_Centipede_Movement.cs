@@ -15,9 +15,6 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     
     public Transform movePoint;
     
-    [Header("Layer Settings")] 
-    public LayerMask wallLayer;
-    
     [Header("Movement Settings")]
     public float detectionRange = 2f;
     public SpriteMask spriteMask;
@@ -35,7 +32,7 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
         
         if (movePoint != null)
         {
-            movePoint.parent = null; 
+            movePoint.parent = PathFinding_Manager.Instance.transform; 
         }
     }
 
