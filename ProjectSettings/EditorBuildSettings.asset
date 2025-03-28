@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Night_2.unity
     guid: a157de863ff8aa84985ad98cc22313a5
+  - enabled: 1
+    path: Assets/Scenes/Night_3.unity
+    guid: c37a9d2d20aee4142b48fe316497082c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 55d0fe973c09b934cbca4e1d9cf45cd3, type: 3}

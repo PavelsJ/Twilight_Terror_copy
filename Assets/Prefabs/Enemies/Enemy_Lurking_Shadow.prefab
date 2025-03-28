@@ -127,7 +127,6 @@ GameObject:
   - component: {fileID: 6837800912479210800}
   - component: {fileID: 8757489666953977120}
   - component: {fileID: 689118820268286501}
-  - component: {fileID: 4991312543382092485}
   - component: {fileID: 1635313435340413070}
   m_Layer: 10
   m_Name: Enemy_Lurking_Shadow
@@ -275,33 +274,6 @@ MonoBehaviour:
   player: {fileID: 0}
   spriteMask: {fileID: 6837800912479210800}
   bloodSplash: {fileID: 69244725199472706}
---- !u!50 &4991312543382092485
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7898453062152712343}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1635313435340413070
 BoxCollider2D:
   m_ObjectHideFlags: 0

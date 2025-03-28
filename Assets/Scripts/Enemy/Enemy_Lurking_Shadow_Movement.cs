@@ -31,7 +31,7 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
 
         if (movePoint != null)
         {
-            movePoint.parent = PathFinding_Manager.Instance.transform;
+            movePoint.parent = null;
         }
         
         fodAgent = player.GetComponent<FOD_Agent>();
@@ -102,7 +102,7 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
     
     private void MoveTowardsTarget()
     {
-        List<Vector3> path = PathFinding_Manager.Instance.CalculateAStarPath(movePoint.position, player.position, new HashSet<Vector3>(recentPositions));
+        List<Vector3> path = PathFinding_Manager.Instance.FindPath(movePoint.position, player.position);
         if (path != null && path.Count > 1)
         {
             movePoint.position = path[1];

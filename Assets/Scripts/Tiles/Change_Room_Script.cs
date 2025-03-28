@@ -27,7 +27,7 @@ public class Change_Room_Script : MonoBehaviour
             }
             
             Audio_Manager.PlaySound(SoundType.Shake, 1);
-
+            
             StartCoroutine(Delay());
             isActive = true;
         }

@@ -29,14 +29,13 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
 
         if (movePoint != null)
         {
-            movePoint.parent = PathFinding_Manager.Instance.transform;
+            movePoint.parent = null;
         }
         
         currentDirection = firstDirection;
         
         spriteMask.enabled = false;
     }
-    
     void Update()
     {
         if (isMoving && movePoint != null)

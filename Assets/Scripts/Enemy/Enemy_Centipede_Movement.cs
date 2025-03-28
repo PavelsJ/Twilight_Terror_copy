@@ -22,9 +22,6 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     [Header("Compounds")]
     public Copy_Past_Movement copy;
     
-    private readonly Queue<Vector3> recentPositions = new Queue<Vector3>(); 
-    private const int recentPositionLimit = 3;
-    
     void Start()
     {
         Player_Movement_Manager.Instance.RegisterEnemy(this);
@@ -32,10 +29,9 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
         
         if (movePoint != null)
         {
-            movePoint.parent = PathFinding_Manager.Instance.transform; 
+            movePoint.parent = null;
         }
     }
-
     void Update()
     {
         if (isMoving && movePoint != null)
@@ -81,17 +77,14 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
         target = player;
         if (target != null)
         {
-            List<Vector3> path = PathFinding_Manager.Instance.CalculateAStarPath(movePoint.position, target.position, new HashSet<Vector3>(recentPositions));
+            List<Vector3> path = PathFinding_Manager.Instance.FindPath(movePoint.position, target.position);
+            
+            if (path == null) Debug.LogError("[Enemy] Путь не найден!");
+            
             if (path != null && path.Count > 1)
             {
                 copy.UpdateSegmentPosition(movePoint.position);
                 movePoint.position = path[1];
-
-                recentPositions.Enqueue(movePoint.position);
-                if (recentPositions.Count > recentPositionLimit)
-                {
-                    recentPositions.Dequeue();
-                }
 
                 isMoving = true;
             }

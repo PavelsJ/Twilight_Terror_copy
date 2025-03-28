@@ -80,6 +80,7 @@ public class Grid_Manager : MonoBehaviour
         StartCoroutine(MoveSector(lastSector, sectorPos[index + 1].position, time));
         yield return new WaitForSeconds(0.4f);
         midSectors[index].gameObject.SetActive(true);
+        Physics2D.SyncTransforms();
     }
 
     private IEnumerator MoveSector(Transform sector, Vector2 targetPos, float moveDuration)
@@ -131,5 +132,7 @@ public class Grid_Manager : MonoBehaviour
         {
             sector.gameObject.SetActive(false);
         }
+        
+        Physics2D.SyncTransforms();
     }
 }

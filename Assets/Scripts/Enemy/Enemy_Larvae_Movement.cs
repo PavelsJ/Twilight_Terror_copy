@@ -63,7 +63,7 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
     
     private void MoveTowardsPos()
     {
-        List<Vector3> path = PathFinding_Manager.Instance.CalculateAStarPath(movePoint.position, target.position);
+        List<Vector3> path = PathFinding_Manager.Instance.FindPath(movePoint.position, target.position);
         if (path != null && path.Count > 1)
         {
             movePoint.position = path[1];

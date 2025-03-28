@@ -8,9 +8,6 @@ public class Enemy_Spider_Chase : Enemy_Spider_Movement
     public bool isChasingPlayer = false;
     public Transform player;
     
-    private readonly Queue<Vector3> recentPositions = new Queue<Vector3>(); 
-    private const int recentPositionLimit = 3;
-    
     public override void OnPlayerMoved()
     {
         if (isMoving || movePoint == null) return;
@@ -29,17 +26,12 @@ public class Enemy_Spider_Chase : Enemy_Spider_Movement
     
     private void MoveTowardsPlayer()
     {
-        List<Vector3> path = PathFinding_Manager.Instance.CalculateAStarPath(movePoint.position, player.position, new HashSet<Vector3>(recentPositions));
+        List<Vector3> path = PathFinding_Manager.Instance.FindPath(movePoint.position, player.position);
+        
         if (path != null && path.Count > 1)
         {
             movePoint.position = path[1];
-
-            recentPositions.Enqueue(movePoint.position);
-            if (recentPositions.Count > recentPositionLimit)
-            {
-                recentPositions.Dequeue();
-            }
-
+            
             isMoving = true;
         }
     }

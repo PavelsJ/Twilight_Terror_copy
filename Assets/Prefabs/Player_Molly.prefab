@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 5128002312306177570}
   - component: {fileID: 1109988301744086290}
   - component: {fileID: 5594590709846486231}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player_Molly
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -252,13 +252,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isMoving: 1
-  isDisable: 0
+  isDisable: 1
   isDead: 0
   movePoint: {fileID: 4536626439465863580}
   arrowPoint: {fileID: 539935677132406983}
-  groundLayer:
+  wallLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   voidLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -296,6 +296,7 @@ MonoBehaviour:
   isActive: 0
   deactivateOnEnd: 0
   sightRange: 48
+  sightRangeDifference: 2
   sightTransparency: 0.5
   flickering: 1
   flickeringSpeed: 4
@@ -342,7 +343,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.6}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!50 &5594590709846486231
 Rigidbody2D:
