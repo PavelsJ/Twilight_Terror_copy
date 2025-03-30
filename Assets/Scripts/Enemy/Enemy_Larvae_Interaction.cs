@@ -20,7 +20,7 @@ public class Enemy_Larvae_Interaction : MonoBehaviour, IEnemy
         
         for (int i = 0; i < 10; i++)
         {
-            GameObject larvae = Instantiate(larvaePrefab, larvaeSpawn.position, Quaternion.identity);
+            GameObject larvae = Instantiate(larvaePrefab, larvaeSpawn.position, Quaternion.identity, transform);
             larvae.SetActive(false);
             larvaePool.Enqueue(larvae);
         }

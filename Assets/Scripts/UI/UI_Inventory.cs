@@ -8,9 +8,7 @@ public class UI_Inventory : MonoBehaviour
 {
     public static UI_Inventory Instance { get; private set; }
     
-    public Sprite defaultSlotSprite;
-    public Sprite selectedSlotSprite;
-    
+    public Transform selectedSlotTransform;
     public Image[] itemSlots;
     
     private int currentSlotIndex = 0; 
@@ -49,8 +47,12 @@ public class UI_Inventory : MonoBehaviour
 
     private void SelectItem(Vector3 direction)
     {
-        SetSelection(selectedSlotIndex, defaultSlotSprite);
-        
+        if (currentSlotIndex == 0)
+        {
+            selectedSlotTransform.gameObject.SetActive(false);
+            return;
+        }
+
         if (direction == Vector3.left)
         {
             selectedSlotIndex = (selectedSlotIndex - 1 + currentSlotIndex) % currentSlotIndex;
@@ -59,8 +61,8 @@ public class UI_Inventory : MonoBehaviour
         {
             selectedSlotIndex = (selectedSlotIndex + 1) % currentSlotIndex;
         }
-        
-        SetSelection(selectedSlotIndex, selectedSlotSprite);
+
+        UpdateSelection();
     }
     
     public void AddItem(GameObject itemPrefab, int amount = 1)
@@ -69,21 +71,16 @@ public class UI_Inventory : MonoBehaviour
         {
             if (currentSlotIndex < itemSlots.Length)
             {
-                if (selectedSlotIndex < currentSlotIndex)
-                {
-                    SetSelection(selectedSlotIndex, defaultSlotSprite);
-                }
-                
                 Instantiate(itemPrefab, itemSlots[currentSlotIndex].transform);
                 selectedSlotIndex = currentSlotIndex;
                 currentSlotIndex++;
-                
-                SetSelection(selectedSlotIndex, selectedSlotSprite);
+
+                UpdateSelection();
             }
             else
             {
-                Debug.LogWarning("Недостаточно слотов для добавления света!");
-                break; 
+                Debug.LogWarning("Недостаточно слотов для добавления предмета!");
+                break;
             }
         }
     }
@@ -95,14 +92,11 @@ public class UI_Inventory : MonoBehaviour
             GameObject child = itemSlots[selectedSlotIndex].transform.GetChild(0).gameObject;
             var steps = child.GetComponent<UI_Extra_Steps>().extraSteps;
             Player_Movement_Manager.Instance.AddSteps(steps);
-            
+
             Destroy(child);
             
-            // Смещение всех элементов справа от удаленного слота влево
             for (int i = selectedSlotIndex; i < currentSlotIndex - 1; i++)
             {
-                SetSelection(selectedSlotIndex, defaultSlotSprite);
-                
                 if (itemSlots[i + 1].transform.childCount > 0)
                 {
                     Transform movingItem = itemSlots[i + 1].transform.GetChild(0);
@@ -110,41 +104,41 @@ public class UI_Inventory : MonoBehaviour
                     movingItem.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
                 }
             }
-            
+
             currentSlotIndex--;
-            
-            if (currentSlotIndex < itemSlots.Length)
-            {
-                foreach (Transform childTransform in itemSlots[currentSlotIndex].transform)
-                {
-                    Destroy(childTransform.gameObject);
-                    SetSelection(currentSlotIndex, defaultSlotSprite);
-                }
-            }
-            
+
             if (currentSlotIndex > 0)
             {
-                selectedSlotIndex = currentSlotIndex - 1;
-                SetSelection(selectedSlotIndex, selectedSlotSprite);
+                selectedSlotIndex = Mathf.Clamp(selectedSlotIndex, 0, currentSlotIndex - 1);
             }
+
+            UpdateSelection();
         }
         else
         {
             Debug.LogWarning("Выбранный слот пуст или некорректен!");
         }
     }
-    
-    private void SetSelection(int index, Sprite image)
+
+    private void UpdateSelection()
     {
-        itemSlots[index].sprite = image;
+        if (currentSlotIndex > 0)
+        {
+            selectedSlotTransform.gameObject.SetActive(true);
+            selectedSlotTransform.position = itemSlots[selectedSlotIndex].transform.position + new Vector3( 48f, 0);
+        }
+        else
+        {
+            selectedSlotTransform.gameObject.SetActive(false);
+        }
     }
-    
+
     public bool IsInventoryEmpty()
     {
         return currentSlotIndex == 0;
     }
 
-    public bool isInventoryFull()
+    public bool IsInventoryFull()
     {
         return currentSlotIndex >= itemSlots.Length;
     }

@@ -9,7 +9,7 @@ public class Player_Interaction : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Interactable") && !UI_Inventory.Instance.isInventoryFull())
+        if (other.gameObject.CompareTag("Interactable") && !UI_Inventory.Instance.IsInventoryFull())
         {
             IInteractable interactable = other.GetComponent<IInteractable>();
             if (interactable != null)
