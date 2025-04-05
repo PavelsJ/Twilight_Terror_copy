@@ -7,13 +7,13 @@ using UnityEngine;
 public class FOD_Agent : MonoBehaviour
 {
     [Header("Agent State")]
-    public bool isActive = false; 
+    public bool isActive = false;
     public bool deactivateOnEnd = false;
     
     [Header("Agent Customization")]
     [Range(0.0f, 480.0f)] public float sightRange = 50.0f;
     [Range(0.1f, 10)] public float sightRangeDifference = 2f;
-    [Range(0.0f, 1.0f)] public float sightTransparency = 0.5f;
+    [Range(0.0f, 1.0f)] public float sightTransparency = 1f;
 
     [Header("Light_Flickering")]
     public bool flickering = true;
@@ -81,7 +81,7 @@ public class FOD_Agent : MonoBehaviour
             ActivateAgent();
         }
     }
-
+    
     private void OnBecameInvisible()
     {
         if (isActive && !gameObject.CompareTag("Player"))
@@ -154,8 +154,6 @@ public class FOD_Agent : MonoBehaviour
             StopCoroutine(updateRoutine);
             updateRoutine = null;
         }
-        
-        
     }
 
     private IEnumerator UpdateAgent()

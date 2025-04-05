@@ -66,7 +66,6 @@ public class Player_Stats : MonoBehaviour
             playerLives--;
             
             healthSlot.sprite = damagedHealthSlot;
-            
            
             float radius = agent.GetRadius();
             agent.ChangeRadiusValue(radius - 12);

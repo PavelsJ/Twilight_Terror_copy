@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine;
 using FODMapping;
 using UnityEngine;
 
@@ -15,6 +14,12 @@ public class Grid_Manager : MonoBehaviour
     public Transform sectorPosParent;
     public Transform playerTargetPos;
     
+    [Header("References")]
+    
+    public Shake_Camera_Manager shakeCamera;
+    public Cutscene cutscene;
+    private FOD_Manager manager;
+    
     private List<Transform> sectorPos;
     private Vector2 firstPos;
     
@@ -22,13 +27,9 @@ public class Grid_Manager : MonoBehaviour
     
     private bool isActive = false;
     private bool isStart = true;
-    
-    private CinemachineVirtualCamera cinemachine;
 
     private void Awake()
     {
-        cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
-        
         foreach (var sector in midSectors)
         {
             sector.gameObject.SetActive(false);
@@ -37,7 +38,7 @@ public class Grid_Manager : MonoBehaviour
     
     void Start()
     {
-        FOD_Manager manager = FindObjectOfType<FOD_Manager>(true);
+        manager = FindObjectOfType<FOD_Manager>(true);
         
         if (manager != null)
         {
@@ -95,22 +96,14 @@ public class Grid_Manager : MonoBehaviour
             float shakeStrength = Mathf.SmoothStep(0f, maxShakeIntensity, elapsedTime / moveDuration);
 
             sector.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
-            ShakeCamera(shakeStrength);
+            shakeCamera.ShakeCamera(shakeStrength);
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         
         sector.position = targetPos;
-        ShakeCamera(0);
-    }
-
-    private void ShakeCamera(float intensity)
-    {
-        CinemachineBasicMultiChannelPerlin amplitude =
-            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-
-        amplitude.m_AmplitudeGain = intensity;
+        shakeCamera.ShakeCamera(0);
     }
 
     public void ChangeGridState()
@@ -134,5 +127,20 @@ public class Grid_Manager : MonoBehaviour
         }
         
         Physics2D.SyncTransforms();
+    }
+
+    public void SetCutscene()
+    {
+        GameObject player = Player_Movement.Instance.gameObject;
+        
+        if (player != null && cutscene != null)
+        {
+            Player_Movement.Instance.movePoint.position = cutscene.playerTargetPos.position;
+            player.transform.position = cutscene.playerTargetPos.position;
+            
+            player.SetActive((true));
+        }
+        
+        Player_Movement.Instance.isDisable = false;
     }
 }

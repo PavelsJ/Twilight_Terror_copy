@@ -19,6 +19,8 @@ public class UI_Hints : MonoBehaviour
 
     public void ShowHint(Sprite newSprite, string newText)
     {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hint);
+        
         gameObject.SetActive(true);
         hint.sprite = newSprite;
         hintText.text = newText;
@@ -30,12 +32,15 @@ public class UI_Hints : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
+            Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hint);
             StartCoroutine(HideHintCoroutine());
         }
     }
 
     private IEnumerator HideHintCoroutine()
     {
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        
         animator.SetTrigger("HideHint");
         
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);

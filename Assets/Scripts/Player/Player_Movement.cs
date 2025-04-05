@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FODMapping;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
@@ -138,7 +136,12 @@ public class Player_Movement : MonoBehaviour
     {
         Vector3 targetPosition = movePoint.position + direction;
         Collider2D boxHit = Physics2D.OverlapPoint(targetPosition, boxLayer);
-            
+        
+        if (CanMoveTo(targetPosition, wallLayer))
+        {
+            return;
+        }
+        
         if (boxHit)
         {
             Box_Interaction box = boxHit.GetComponent<Box_Interaction>();
@@ -147,7 +150,10 @@ public class Player_Movement : MonoBehaviour
             {
                 Player_Movement_Manager.Instance.NotifyEnemiesOfPlayerMove();
                 Move(targetPosition);
+                return;
             }
+            
+            return;
         }
         else if (CanMoveTo(targetPosition, voidLayer))
         {
@@ -155,19 +161,18 @@ public class Player_Movement : MonoBehaviour
             
             isDead = true;
             StartCoroutine(FallToTheVoid());
+            return;
         }
         else if (CanMoveTo(targetPosition, iceLayer))
         {
             Player_Movement_Manager.Instance.NotifyEnemiesOfPlayerMove();
             
             MoveOnIce(targetPosition);
+            return;
         }
-        else if (!CanMoveTo(targetPosition, wallLayer))
-        {
-            Player_Movement_Manager.Instance.NotifyEnemiesOfPlayerMove();
-            
-            Move(targetPosition);
-        }
+        
+        Player_Movement_Manager.Instance.NotifyEnemiesOfPlayerMove();
+        Move(targetPosition);
     }
 
     private void MoveOnIce(Vector3 direction)
@@ -201,12 +206,15 @@ public class Player_Movement : MonoBehaviour
         if (Physics2D.OverlapPoint(targetPosition, voidLayer))
         {
             isDead = true;
+            Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hurt);
             StartCoroutine(FallToTheVoid());
         }
     }
 
     private IEnumerator FallToTheVoid()
     {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
+        
         yield return new WaitForSeconds(0.6f);
         
         GetComponent<FOD_Agent>().EndAgent();

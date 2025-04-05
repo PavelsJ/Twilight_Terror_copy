@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using FODMapping;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Player_Movement_Manager : MonoBehaviour
 {
@@ -43,6 +41,7 @@ public class Player_Movement_Manager : MonoBehaviour
         }
         
         stats = GetComponent<Player_Stats>();
+        Save_Manager.Instance.SaveScene();
     }
 
     private void Update()
@@ -99,8 +98,8 @@ public class Player_Movement_Manager : MonoBehaviour
 
     public void ActivateCentipedeChase()
     {
-        MusicManager.instance.PlayMusic(MusicManager.instance.chaseMusic);
-        Audio_Manager.PlaySound(SoundType.Warning);
+        Music_Manager.instance.PlayMusic(Music_Manager.instance.chaseMusic);
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
         
         if(enemy != null) enemy.gameObject.SetActive(true);
     }
@@ -109,8 +108,8 @@ public class Player_Movement_Manager : MonoBehaviour
     {
         if (enemies.Count > 0)
         {
-            MusicManager.instance.PlayMusic(MusicManager.instance.chaseMusic);
-            Audio_Manager.PlaySound(SoundType.Warning);
+            Music_Manager.instance.PlayMusic(Music_Manager.instance.chaseMusic);
+            Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
             
             foreach (var enemy in enemies)
             {

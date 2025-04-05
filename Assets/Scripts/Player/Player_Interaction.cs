@@ -30,10 +30,13 @@ public class Player_Interaction : MonoBehaviour
 
     private IEnumerator KillPlayer()
     {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hurt);
+        
         yield return new WaitForSeconds(0.2f);
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
         
         GetComponent<FOD_Agent>().EndAgent();
-       
+        
         yield return new WaitForSeconds(0.7f);
         
         FOD_Manager manager = FindObjectOfType<FOD_Manager>(true);

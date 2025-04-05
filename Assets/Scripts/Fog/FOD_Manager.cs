@@ -81,7 +81,6 @@ namespace FODMapping
         public IEnumerator EnableWithDelay(float delay)
         {
             yield return new WaitUntil(() => isInitialized);
-
             SetFogVisibility(true);
 
             yield return new WaitForSeconds(delay);
@@ -194,7 +193,7 @@ namespace FODMapping
         }
 
         // Player End of a Room
-        public IEnumerator DisableWithDelay()
+        public IEnumerator DisableWithDelay(bool cutscene = false)
         {
             if (removeAgentsCoroutine != null)
             {
@@ -207,16 +206,23 @@ namespace FODMapping
             }
 
             yield return new WaitForSeconds(0.5f);
-
+            
+            if (grid != null && cutscene)
+            {
+                //Player Cutscene
+                grid.SetCutscene();
+                yield break;
+            }
+            
             if (grid != null)
             {
                 grid.ChangeGridState();
             }
-
+            
             DisableFOV();
             SetFogVisibility(false);
         }
-
+        
         public void SetFogVisibility(bool visible)
         {
             if (visible)
@@ -227,7 +233,6 @@ namespace FODMapping
             {
                 animator.SetTrigger("FadeOut");
             }
-
         }
 
         private void OnDestroy()

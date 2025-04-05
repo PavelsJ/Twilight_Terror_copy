@@ -26,7 +26,7 @@ public class Change_Room_Script : MonoBehaviour
                 gridInteraction.OnActive(nextRoomIndex, changeRoomTime);
             }
             
-            Audio_Manager.PlaySound(SoundType.Shake, 1);
+            Music_Manager.instance.PlaySound(Music_Manager.SoundType.Shake);
             
             StartCoroutine(Delay());
             isActive = true;
