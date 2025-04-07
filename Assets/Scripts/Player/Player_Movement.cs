@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FODMapping;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class Player_Movement : MonoBehaviour
     [Header("Trap Settings")]
     public float trapCooldown = 0.5f;
     private float trapTimer = 0f;
+    
+    [Header("Footstep Settings")]
+    public float footstepRate = 0.4f; 
+    private float footstepTimer = 0f;
     
     [Header("Compounds")]
     private SpriteRenderer spriteRenderer;
@@ -106,6 +111,8 @@ public class Player_Movement : MonoBehaviour
         }
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, speed * Time.deltaTime);
+        
+        HandleFootsteps();
     }
     
     private Vector3 HandleInput()
@@ -266,5 +273,25 @@ public class Player_Movement : MonoBehaviour
     public void HitByTrap()
     {
         isMoving = false; 
+    }
+    
+    private void HandleFootsteps()
+    {
+        if (Vector3.Distance(transform.position, movePoint.position) > 0.01f)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                float pitch = Random.Range(0.95f, 1.5f);
+                Music_Manager.instance.PlaySound(Music_Manager.SoundType.Footsteps, pitch);
+
+                footstepTimer = footstepRate / Mathf.Max(1f, speed); 
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; 
+        }
     }
 }

@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  voidSprite: {fileID: 21300000, guid: 51a9569e833eac64985721ceb9a27ad3, type: 3}
+  voidSprite: {fileID: -813705783, guid: 04b75b0e063943c4591f342efcb12ecf, type: 3}

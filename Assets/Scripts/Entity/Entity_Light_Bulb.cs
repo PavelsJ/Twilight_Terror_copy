@@ -17,12 +17,15 @@ public class Entity_Light_Bulb : MonoBehaviour, IInteractable
 
     public void DestroyObject()
     {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.PickUp);
+        
         UI_Inventory.Instance.AddItem(UIprefab);
         FadeOut();
     }
 
     private void FadeOut()
     {
+        
         GetComponent<Collider2D>().enabled = false;
         
         anim.SetTrigger("FadeOut");

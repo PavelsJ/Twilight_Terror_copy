@@ -206,6 +206,25 @@ MonoBehaviour:
   - type: 1
     clips:
     - {fileID: 8300000, guid: 88e6badace0678c418f87f4f8e78c9aa, type: 3}
+  - type: 9
+    clips:
+    - {fileID: 8300000, guid: 2e7f9da6def35604fb5fa1d525b74de3, type: 3}
+  - type: 10
+    clips:
+    - {fileID: 8300000, guid: 58aeb1559f23a374ab78e05eb8d835a4, type: 3}
+    - {fileID: 8300000, guid: 2ec9b57a2fa3d7e44876bb87639a93cf, type: 3}
+    - {fileID: 8300000, guid: d30c0fea29496ee419d0e38e5b554027, type: 3}
+    - {fileID: 8300000, guid: 55246039d71dfbc40be53576c8d6cec6, type: 3}
+  - type: 0
+    clips:
+    - {fileID: 8300000, guid: 593308aeb082d174fb6d5fe2d2e59da7, type: 3}
+    - {fileID: 8300000, guid: fb3b191359f526b469187c9b559e9fea, type: 3}
+    - {fileID: 8300000, guid: 767daa36313aa9a4d9f342187e99d03e, type: 3}
+    - {fileID: 8300000, guid: cbe59fa812da39d4dab9fdb082ceb0b1, type: 3}
+    - {fileID: 8300000, guid: 5ca1e3f6c30f8074f848e69ceee3f447, type: 3}
+  - type: 11
+    clips:
+    - {fileID: 8300000, guid: 1fdba0a6138161d41ae1b30a6257859c, type: 3}
 --- !u!1 &4211922334181036204
 GameObject:
   m_ObjectHideFlags: 0

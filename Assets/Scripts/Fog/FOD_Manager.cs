@@ -178,15 +178,18 @@ namespace FODMapping
             removeAgentsCoroutine = StartCoroutine(RemoveAgentsCoroutine());
         }
 
-        private IEnumerator RemoveAgentsCoroutine(float time = 0.7f)
+        private IEnumerator RemoveAgentsCoroutine()
         {
-            foreach (var agent in new List<FOD_Agent>(agents))
+            foreach (var agent in agents)
             {
-                agent.EndAgent(time);
-                yield return new WaitForSeconds(time + 0.1f);
+                agent.EndAgent(0.5f);
             }
 
+            yield return new WaitForSeconds(0.5f);
+
             DisableFOV();
+            SetFogVisibility(false);
+            
             Debug.Log("Game Over");
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

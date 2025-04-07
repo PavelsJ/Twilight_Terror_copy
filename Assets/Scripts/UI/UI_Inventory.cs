@@ -89,6 +89,8 @@ public class UI_Inventory : MonoBehaviour
     {
         if (selectedSlotIndex < itemSlots.Length && itemSlots[selectedSlotIndex].transform.childCount > 0)
         {
+            Music_Manager.instance.PlaySound(Music_Manager.SoundType.ItemExpire);
+            
             GameObject child = itemSlots[selectedSlotIndex].transform.GetChild(0).gameObject;
             var steps = child.GetComponent<UI_Extra_Steps>().extraSteps;
             Player_Movement_Manager.Instance.AddSteps(steps);

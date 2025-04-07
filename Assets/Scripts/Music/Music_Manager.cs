@@ -29,7 +29,10 @@ public class Music_Manager : MonoBehaviour
         Warning,
         Hint,
         LightSource,
-        LightSwitch
+        LightSwitch,
+        PickUp,
+        ItemExpire,
+        Chest
     }
     
     private void Awake()

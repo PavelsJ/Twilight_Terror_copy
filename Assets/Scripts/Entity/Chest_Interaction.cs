@@ -9,6 +9,8 @@ public class Chest_Interaction : MonoBehaviour, IInteractable
 
     public void DestroyObject()
     {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Chest);
+        
         UI_Inventory.Instance.AddItem(UIprefab);
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
