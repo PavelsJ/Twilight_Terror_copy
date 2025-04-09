@@ -10,8 +10,9 @@ public class Light_Switch_Interaction : MonoBehaviour
     public Sprite sprite;
     
     public Bed_Interaction bedInteraction;
-    
-    public Checkpoint_Interaction[] checkpointInteractions;
+
+    public GameObject dreamSpace;
+    public GameObject checkpoint;
     public GameObject hintToShow;
     public GameObject hintToHide;
     
@@ -40,19 +41,23 @@ public class Light_Switch_Interaction : MonoBehaviour
     private void OnSceneEnd()
     {
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.LightSwitch);
+        Music_Manager.instance.SetToAmbientMusic();
         
         if (manager == null)
         {
             Debug.Log("FOD_Manager is empty");
             return;
         }
-
-        if (checkpointInteractions.Length > 0)
+        
+        if (dreamSpace != null)
         {
-            foreach (Checkpoint_Interaction checkpoint in checkpointInteractions)
-            {
-                checkpoint.enabled = false;
-            }
+            dreamSpace.SetActive(true);
+        }
+
+        if (checkpoint != null)
+        {
+            checkpoint.GetComponent<Collider2D>().enabled = false;
+            checkpoint.GetComponent<Checkpoint_Interaction>().enabled = false;
         }
         
         if (hintToShow != null)

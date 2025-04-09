@@ -13,10 +13,12 @@ public class Checkpoint_Interaction : MonoBehaviour
     public Fire_Fly_Interation fire;
     private Transform player;
     private FOD_Agent agent;
+    private Animator animator;
 
     private void Awake()
     {
         agent = GetComponent<FOD_Agent>();
+        animator = GetComponent<Animator>();
 
         if (agent != null)
         {
@@ -53,13 +55,18 @@ public class Checkpoint_Interaction : MonoBehaviour
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.LightSource);
         
         isActive = true;
+        animator.SetTrigger("Light");
         
         if (agent != null)
         {
             agent.enabled = true;
         }
         
-        fire.Deactivate();
+        if (fire != null)
+        {
+            fire.Deactivate();
+        }
+        
         Debug.Log("Checkpoint Activated!");
     }
 }

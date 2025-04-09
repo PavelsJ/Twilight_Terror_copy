@@ -10,6 +10,7 @@ public class Player_Movement_Manager : MonoBehaviour
     [Header("Transforms")]
     public Transform player;
     public Transform enemy;
+    public GameObject[] obstaclesOnPath;
     
     private Vector3 lastMoveDirection = Vector3.zero;
     
@@ -98,17 +99,30 @@ public class Player_Movement_Manager : MonoBehaviour
 
     public void ActivateCentipedeChase()
     {
-        Music_Manager.instance.PlayMusic(Music_Manager.instance.chaseMusic);
+        Music_Manager.instance.SetToChaseMusic();
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
         
         if(enemy != null) enemy.gameObject.SetActive(true);
+
+        ClearPath();
+    }
+
+    private void ClearPath()
+    {
+        if (obstaclesOnPath.Length > 0)
+        {
+            foreach (var obstacle in obstaclesOnPath)
+            {
+                obstacle.SetActive(false);
+            }
+        }
     }
 
     public void ActivateSpiderChase()
     {
         if (enemies.Count > 0)
         {
-            Music_Manager.instance.PlayMusic(Music_Manager.instance.chaseMusic);
+            Music_Manager.instance.SetToChaseMusic();
             Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
             
             foreach (var enemy in enemies)

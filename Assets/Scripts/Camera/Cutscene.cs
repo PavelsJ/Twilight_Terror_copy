@@ -22,7 +22,6 @@ public class Cutscene : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !isActive)
         {
             Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
-            Music_Manager.instance.PlayMusic(Music_Manager.instance.chaseMusic);
             
             StartCoroutine(Delay());
             isActive = true;

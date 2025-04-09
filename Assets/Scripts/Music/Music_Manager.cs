@@ -14,10 +14,26 @@ public class Music_Manager : MonoBehaviour
     public AudioClip mainThemeMusic;
     public AudioClip ambientMusic;
     public AudioClip chaseMusic;
+    public AudioClip shadowMusic;
+    
+    private MusicState currentMusicState;
+    private MusicState previousMusicState;
 
     [Header("SFX")] 
     public List<SoundGroup> soundGroups; 
     private Dictionary<SoundType, AudioClip[]> soundDictionary;
+    
+    [Header("Fade Settings")]
+    public float fadeDuration = 1.5f;
+    private Coroutine musicTransitionCoroutine;
+    
+    private enum MusicState
+    {
+        MainTheme,
+        Ambient,
+        Chase,
+        Shadow
+    }
     
     public enum SoundType
     {
@@ -34,6 +50,8 @@ public class Music_Manager : MonoBehaviour
         ItemExpire,
         Chest
     }
+    
+    
     
     private void Awake()
     {
@@ -52,8 +70,9 @@ public class Music_Manager : MonoBehaviour
         InitializeSoundDictionary();
     }
 
-    void Start()
+     void Start()
     {
+        
         UpdateMusic(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
@@ -61,26 +80,23 @@ public class Music_Manager : MonoBehaviour
     {
         UpdateMusic(scene, mode);
     }
-    
+
     private void UpdateMusic(Scene scene, LoadSceneMode mode)
     {
-        AudioClip newMusic = scene.buildIndex is 0 or 1 ? mainThemeMusic : ambientMusic;
-        
-        if (musicSource.clip != newMusic)
-        {
-            musicSource.clip = newMusic;
-            musicSource.Play();
-        }
+        if (scene.buildIndex is 0 or 1)
+            SetMusic(mainThemeMusic, MusicState.MainTheme);
+        else
+            SetMusic(ambientMusic, MusicState.Ambient);
     }
 
     public void PlayMusic(AudioClip clip)
     {
-        if(clip == musicSource.clip) return;
-        
+        if (clip == musicSource.clip) return;
+
         musicSource.clip = clip;
         musicSource.Play();
     }
-    
+
     public void PlaySound(SoundType type, float pitch = 1f)
     {
         AudioClip clip = GetRandomClip(type);
@@ -110,6 +126,105 @@ public class Music_Manager : MonoBehaviour
             return clips[Random.Range(0, clips.Length)];
         }
         return null;
+    }
+
+    private void SetMusic(AudioClip clip, MusicState state)
+    {
+        if (musicSource.clip == clip) return;
+        
+        TransitionToMusic(clip, state);
+
+        previousMusicState = currentMusicState;
+        currentMusicState = state;
+    }
+    
+    public void EnterEnemyEncounter()
+    {
+        if (currentMusicState != MusicState.Shadow && currentMusicState != MusicState.Chase)
+        {
+            SetMusic(shadowMusic, MusicState.Shadow);
+        }
+    }
+    
+    public void ExitEnemyEncounter()
+    {
+        switch (previousMusicState)
+        {
+            case MusicState.Ambient:
+                SetMusic(ambientMusic, MusicState.Ambient);
+                break;
+            case MusicState.Chase:
+                SetMusic(chaseMusic, MusicState.Chase);
+                break;
+            default:
+                // SetMusic(mainThemeMusic, MusicState.MainTheme);
+                break;
+        }
+    }
+    
+    public void SetToChaseMusic()
+    {
+        SetMusic(chaseMusic, MusicState.Chase);
+    }
+
+    public void SetToAmbientMusic()
+    {
+        SetMusic(ambientMusic, MusicState.Ambient);
+    }
+
+    public void SetCurrentStateMusic()
+    {
+        switch (currentMusicState)
+        {
+            case MusicState.MainTheme:
+                SetMusic(mainThemeMusic, MusicState.MainTheme);
+                break;
+            case MusicState.Ambient:
+                SetMusic(ambientMusic, MusicState.Ambient);
+                break;
+            case MusicState.Chase:
+                SetMusic(chaseMusic, MusicState.Chase);
+                break;
+            case MusicState.Shadow:
+                SetMusic(shadowMusic, MusicState.Shadow);
+                break;
+        }
+    }
+    
+    private void TransitionToMusic(AudioClip newClip, MusicState newState)
+    {
+        if (musicSource.clip == newClip) return;
+
+        if (musicTransitionCoroutine != null)
+            StopCoroutine(musicTransitionCoroutine);
+
+        musicTransitionCoroutine = StartCoroutine(FadeMusic(newClip, newState));
+    }
+    
+    private IEnumerator FadeMusic(AudioClip newClip, MusicState newState)
+    {
+        float startVolume = musicSource.volume;
+
+        // Fade out
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(startVolume, 0f, t / fadeDuration);
+            yield return null;
+        }
+
+        musicSource.volume = 0f;
+        musicSource.clip = newClip;
+        musicSource.Play();
+        currentMusicState = newState;
+
+        // Fade in
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            musicSource.volume = Mathf.Lerp(0f, startVolume, t / fadeDuration);
+            yield return null;
+        }
+
+        musicSource.volume = startVolume;
     }
 }
 

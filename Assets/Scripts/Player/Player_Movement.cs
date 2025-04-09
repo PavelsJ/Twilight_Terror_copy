@@ -58,7 +58,7 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
-        movePoint.parent = null;
+        movePoint.parent = Player_Movement_Manager.Instance.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

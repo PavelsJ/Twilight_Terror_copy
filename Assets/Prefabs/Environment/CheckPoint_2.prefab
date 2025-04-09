@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 5864204861092446514}
   - component: {fileID: 367752185727781047}
   - component: {fileID: 3311691423523980076}
+  - component: {fileID: 5488894959991106928}
   m_Layer: 0
   m_Name: CheckPoint_2
   m_TagString: Untagged
@@ -155,7 +156,7 @@ SpriteRenderer:
   m_SortingLayerID: 1535477347
   m_SortingLayer: 2
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: bc870e52a5ccaf44f95132513f84d5c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb2615a245199df40b1a69d8511385ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   deactivateOnEnd: 0
-  sightRange: 48
+  sightRange: 36
   sightRangeDifference: 2
   sightTransparency: 1
   flickering: 1
@@ -235,7 +236,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 1}
+    oldSize: {x: 1, y: 0.96875}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -244,6 +245,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5}
   m_EdgeRadius: 0
+--- !u!95 &5488894959991106928
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6983732886807933011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c3fdc01df23cf443b9cdacbbdb2b62b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8743223441342893512
 GameObject:
   m_ObjectHideFlags: 0

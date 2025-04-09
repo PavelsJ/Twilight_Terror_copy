@@ -866,6 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 74377177}
   enemy: {fileID: 1675066866}
+  obstaclesOnPath: []
   isInvulnerable: 0
   isStealth: 0
 --- !u!4 &124942638
@@ -5096,6 +5097,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441774321690913132, guid: 45e4c84ba5d62544484fc74bd174d90f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934961242554859803, guid: 45e4c84ba5d62544484fc74bd174d90f, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934961242554859803, guid: 45e4c84ba5d62544484fc74bd174d90f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5181469379234902014, guid: 45e4c84ba5d62544484fc74bd174d90f, type: 3}

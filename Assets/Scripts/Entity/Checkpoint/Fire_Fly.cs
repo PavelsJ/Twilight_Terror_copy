@@ -67,14 +67,17 @@ public class Fire_Fly : MonoBehaviour
     
     public IEnumerator FadeOut(float duration = 0.8f)
     {
-        float time = 0f;
-        GetComponent<FOD_Agent>().EndAgent();
-        while (time < duration)
+        FOD_Agent agent = GetComponent<FOD_Agent>();
+        
+        if (agent != null)
         {
-            time += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, time / duration);
-            
+            agent.EndAgent();
+        }
+        else
+        {
             yield return null;
         }
+        
+        yield return new WaitForSeconds(duration);
     }
 }

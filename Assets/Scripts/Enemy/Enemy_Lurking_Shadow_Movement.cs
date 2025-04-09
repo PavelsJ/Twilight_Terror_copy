@@ -31,7 +31,8 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
 
         if (movePoint != null)
         {
-            movePoint.parent = null;
+            
+            movePoint.parent = PathFinding_Manager.Instance.transform;
         }
         
         fodAgent = player.GetComponent<FOD_Agent>();
@@ -90,10 +91,13 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
             {
                 if (isNear)
                 {
+                    Music_Manager.instance.PlaySound(Music_Manager.SoundType.Noise);
+                    Music_Manager.instance.EnterEnemyEncounter();
                     fodAgent.SetMinRadiusValue();
                 }
                 else
                 {
+                    Music_Manager.instance.ExitEnemyEncounter();
                     fodAgent.SetMaxRadiusValue();
                 }
             }

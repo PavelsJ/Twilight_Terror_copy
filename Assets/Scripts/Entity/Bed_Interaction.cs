@@ -32,15 +32,19 @@ public class Bed_Interaction : MonoBehaviour
         if (!PlayerPrefs.HasKey("NightCount"))
         {
             PlayerPrefs.SetInt("NightCount", 1);
+           
         }
         else
         {
             int nightCount = PlayerPrefs.GetInt("NightCount");
             nightCount += 1;
+            
             PlayerPrefs.SetInt("NightCount", nightCount);
         }
         
+        Save_Manager.Instance.SetSave("NightCount");
         PlayerPrefs.Save();
+        
         Debug.Log("NightCount: " + PlayerPrefs.GetInt("NightCount"));
     }
     
@@ -48,6 +52,7 @@ public class Bed_Interaction : MonoBehaviour
     {
         if (manager != null)
         {
+            Player_Movement.Instance.isDisable = true;
             manager.SetFogVisibility(true);
             yield return new WaitForSeconds(1.2f);
             

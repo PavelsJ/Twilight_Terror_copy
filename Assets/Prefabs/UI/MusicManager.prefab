@@ -179,6 +179,7 @@ MonoBehaviour:
   mainThemeMusic: {fileID: 8300000, guid: bcafe071ba8722b4c881c6f963ad547b, type: 3}
   ambientMusic: {fileID: 8300000, guid: 74aec4606952f4af1ba8d3c7d9581b43, type: 3}
   chaseMusic: {fileID: 8300000, guid: b64a054737fb942e0b9cf0aeb5f44e01, type: 3}
+  shadowMusic: {fileID: 8300000, guid: c2c392d4ec07d40528432c3bda4bc466, type: 3}
   soundGroups:
   - type: 2
     clips:
@@ -225,6 +226,10 @@ MonoBehaviour:
   - type: 11
     clips:
     - {fileID: 8300000, guid: 1fdba0a6138161d41ae1b30a6257859c, type: 3}
+  - type: 3
+    clips:
+    - {fileID: 8300000, guid: ef96a00b1ed22754ea0efdd21581e371, type: 3}
+  fadeDuration: 0.2
 --- !u!1 &4211922334181036204
 GameObject:
   m_ObjectHideFlags: 0
