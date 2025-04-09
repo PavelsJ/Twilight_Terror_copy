@@ -81,9 +81,11 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
         
         isDead = true;
         Player_Movement_Manager.Instance.DeregisterEnemy(this);
-        
         FOD_Agent agent = gameObject.GetComponent<FOD_Agent>();
-        agent.deactivateOnEnd = true;
-        agent.EndAgent();
+        if (agent != null)
+        {
+            agent.deactivateOnEnd = true;
+            agent.EndAgent();
+        }
     }
 }

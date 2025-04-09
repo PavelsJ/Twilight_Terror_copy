@@ -16,6 +16,7 @@ public class Box_Interaction : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        PathFinding_Manager.Instance.RegisterBox(transform.position);
     }
     
     public bool TryPush(Vector3 direction)
@@ -47,7 +48,9 @@ public class Box_Interaction : MonoBehaviour
             StopCoroutine(coroutine);
             coroutine = null;
         }
-
+        
+        PathFinding_Manager.Instance.SetBoxPosition(transform.position, newPosition);
+        
         coroutine = StartCoroutine(MoveSmoothly(newPosition));
     }
 

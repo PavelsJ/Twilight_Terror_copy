@@ -11,6 +11,7 @@ public class PathFinding_Manager : MonoBehaviour
     public LayerMask boxLayer;
     
     private Dictionary<Vector3, List<Vector3>> cachedPaths = new Dictionary<Vector3, List<Vector3>>();
+    private HashSet<Vector3> boxPositions = new HashSet<Vector3>();
     
     private void Awake()
     {
@@ -74,7 +75,7 @@ public class PathFinding_Manager : MonoBehaviour
         foreach (Vector3 move in possibleMoves)
         {
             Vector3 targetPosition = position + move;
-            if (!Physics2D.OverlapPoint(targetPosition, wallLayer) && !Physics2D.OverlapPoint(targetPosition, boxLayer))
+            if (!Physics2D.OverlapPoint(targetPosition, wallLayer) && !IsBoxAtPosition(targetPosition))
             {
                 neighbors.Add(targetPosition);
             }
@@ -91,6 +92,27 @@ public class PathFinding_Manager : MonoBehaviour
             path.Insert(0, current);
         }
         return path;
+    }
+    
+    public void SetBoxPosition(Vector3 oldPos, Vector3 newPos)
+    {
+        boxPositions.Remove(oldPos);
+        boxPositions.Add(newPos);
+    }
+
+    public void RegisterBox(Vector3 pos)
+    {
+        boxPositions.Add(pos);
+    }
+
+    public void UnregisterBox(Vector3 pos)
+    {
+        boxPositions.Remove(pos);
+    }
+
+    public bool IsBoxAtPosition(Vector3 pos)
+    {
+        return boxPositions.Contains(pos);
     }
     
     public void ClearCache()

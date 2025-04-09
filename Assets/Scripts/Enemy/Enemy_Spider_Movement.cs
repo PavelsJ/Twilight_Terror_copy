@@ -17,7 +17,6 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
     
     [Header("Layer Settings")] 
     public LayerMask wallLayer;
-    public LayerMask boxLayer;
     
     [Header("Compounds")]
     public SpriteMask spriteMask;
@@ -67,6 +66,7 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
         else
         {
             currentDirection = -currentDirection;
+            
             if (CanMove(currentDirection))
             {
                 movePoint.position += currentDirection;
@@ -77,7 +77,11 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
     private bool CanMove(Vector3 direction)
     {
         Vector3 targetPosition = movePoint.position + direction;
-        return !Physics2D.OverlapPoint(targetPosition, boxLayer) && !Physics2D.OverlapPoint(targetPosition, wallLayer);
+        
+        if (PathFinding_Manager.Instance.IsBoxAtPosition(targetPosition))
+            return false;
+
+        return !Physics2D.OverlapPoint(targetPosition, wallLayer);
     }
 
     public void DestroyObject()

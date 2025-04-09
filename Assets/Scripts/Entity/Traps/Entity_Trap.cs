@@ -30,7 +30,7 @@ public class Entity_Trap : MonoBehaviour
 
     protected virtual void TrapEffect()
     {
-       
+       Music_Manager.instance.PlaySound(Music_Manager.SoundType.Trap);
     }
 
     private void DeactivateTrap()

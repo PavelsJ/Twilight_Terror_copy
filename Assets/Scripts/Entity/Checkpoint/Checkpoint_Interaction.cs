@@ -6,9 +6,12 @@ using UnityEngine;
 public class Checkpoint_Interaction : MonoBehaviour
 {
     public float invulnerabilityDistance = 2f;
+    public float enemyCheckRadius = 3f;
+    public LayerMask enemyLayer;
     
     private bool isActive = false;
     private bool isInvincible = false;
+    private bool enemyTooClose = false;
     
     public Fire_Fly_Interation fire;
     private Transform player;
@@ -46,6 +49,23 @@ public class Checkpoint_Interaction : MonoBehaviour
             {
                 isInvincible = isWithinRange;
                 Player_Movement_Manager.Instance.SetInvulnerability(isInvincible);
+            }
+        }
+        
+        if (isActive && agent != null)
+        {
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, enemyCheckRadius, enemyLayer);
+            bool enemyNearby = nearbyEnemies.Length > 0;
+
+            if (enemyNearby && !enemyTooClose)
+            {
+                agent.SetMinRadiusValue();
+                enemyTooClose = true;
+            }
+            else if (!enemyNearby && enemyTooClose)
+            {
+                agent.SetMaxRadiusValue();
+                enemyTooClose = false;
             }
         }
     }

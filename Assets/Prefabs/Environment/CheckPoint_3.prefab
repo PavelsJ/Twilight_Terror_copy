@@ -233,6 +233,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerabilityDistance: 2
+  enemyCheckRadius: 2
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   fire: {fileID: 8832908176499953436}
 --- !u!114 &3649886726657107935
 MonoBehaviour:

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Enemy_Larvae_Interaction : MonoBehaviour, IEnemy
 {
-    public GameObject larvaePrefab;
+    public GameObject larvaeBlackPrefab;
+    public GameObject larvaeWhitePrefab;
     
     public Transform larvaeSpawn;
     public Transform larvaeFinish;
@@ -20,7 +21,7 @@ public class Enemy_Larvae_Interaction : MonoBehaviour, IEnemy
         
         for (int i = 0; i < 10; i++)
         {
-            GameObject larvae = Instantiate(larvaePrefab, larvaeSpawn.position, Quaternion.identity, transform);
+            GameObject larvae = Instantiate(larvaeWhitePrefab, larvaeSpawn.position, Quaternion.identity, transform);
             larvae.SetActive(false);
             larvaePool.Enqueue(larvae);
         }
@@ -49,7 +50,11 @@ public class Enemy_Larvae_Interaction : MonoBehaviour, IEnemy
 
     private void OnLarvaeReachedEnd(GameObject larvae)
     {
-        larvae.GetComponent<FOD_Agent>().enabled = false;
-        larvae.SetActive(false);
+        FOD_Agent agent = larvae.GetComponent<FOD_Agent>();
+        if (agent != null)
+        {
+            agent.deactivateOnEnd = true;
+            agent.EndAgent();
+        }
     }
 }

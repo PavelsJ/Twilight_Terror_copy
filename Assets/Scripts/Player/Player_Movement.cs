@@ -156,6 +156,8 @@ public class Player_Movement : MonoBehaviour
             if (box != null && box.TryPush(direction))
             {
                 Player_Movement_Manager.Instance.NotifyEnemiesOfPlayerMove();
+                PathFinding_Manager.Instance.ClearCache();
+                
                 Move(targetPosition);
                 return;
             }

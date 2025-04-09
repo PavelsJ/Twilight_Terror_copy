@@ -48,7 +48,8 @@ public class Music_Manager : MonoBehaviour
         LightSwitch,
         PickUp,
         ItemExpire,
-        Chest
+        Chest,
+        Trap
     }
     
     
