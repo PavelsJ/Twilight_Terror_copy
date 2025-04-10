@@ -24,13 +24,22 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     
     void Start()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
         spriteMask.enabled = false; 
         
         if (movePoint != null)
         {
             movePoint.parent = null;
         }
+    }
+    
+    private void OnEnable()
+    {
+        Player_Movement_Manager.Instance.RegisterEnemy(this);
+    }
+    
+    private void OnDisable()
+    {
+        Player_Movement_Manager.Instance.DeregisterEnemy(this);
     }
     void Update()
     {

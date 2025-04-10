@@ -48,6 +48,22 @@ public class Light_Switch_Interaction : MonoBehaviour
             Debug.Log("FOD_Manager is empty");
             return;
         }
+
+        StartCoroutine(DisableWithDelay());
+        
+        if (bedInteraction != null)
+        {
+            bedInteraction.endScene = true;
+            Player_Movement_Manager.Instance.isInvulnerable = true;
+        }
+        
+        GetComponent<SpriteRenderer>().sprite = sprite;
+        manager.StartCoroutine(manager.DisableWithDelay());
+    }
+
+    private IEnumerator DisableWithDelay()
+    {
+        Player_Movement.Instance.isDisable = true;
         
         if (dreamSpace != null)
         {
@@ -58,6 +74,7 @@ public class Light_Switch_Interaction : MonoBehaviour
         {
             checkpoint.GetComponent<Collider2D>().enabled = false;
             checkpoint.GetComponent<Checkpoint_Interaction>().enabled = false;
+            checkpoint.GetComponent<FOD_Agent>().enabled = false;
         }
         
         if (hintToShow != null)
@@ -70,14 +87,8 @@ public class Light_Switch_Interaction : MonoBehaviour
             hintToHide.SetActive(false);
         }
         
-        if (bedInteraction != null)
-        {
-            bedInteraction.endScene = true;
-            Player_Movement_Manager.Instance.isInvulnerable = true;
-        }
-        
-        GetComponent<SpriteRenderer>().sprite = sprite;
-        manager.StartCoroutine(manager.DisableWithDelay());
+        yield return new WaitForSeconds(0.5f);
+        Player_Movement.Instance.isDisable = false;
     }
     
 }

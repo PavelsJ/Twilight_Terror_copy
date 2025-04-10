@@ -87,7 +87,10 @@ public class Player_Movement_Manager : MonoBehaviour
         
             foreach (var enemy in enemies)
             {
-                enemy.OnPlayerMoved();  
+                if (enemy is MonoBehaviour { gameObject: { activeInHierarchy: true } })
+                {
+                    enemy.OnPlayerMoved();
+                }
             }
         }
     }

@@ -4896,7 +4896,7 @@ Tilemap:
       m_TileSpriteIndex: 28
       m_TileMatrixIndex: 1
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 23, y: 0, z: 0}
@@ -5643,7 +5643,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 5
+  - m_RefCount: 6
     m_Data: {fileID: 545088137511263996, guid: 857be2ebbb63b4642869799480e3dade, type: 3}
   - m_RefCount: 56
     m_Data: {fileID: 545088137511263996, guid: 5396b8408a4f8d344822ce51d760c15c, type: 3}
@@ -10781,7 +10781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomIndex: 0
-  changeRoomTime: 1.2
+  changeRoomTime: 1.6
   gridInteraction: {fileID: 514258729}
   isStart: 1
 --- !u!61 &1575213830
@@ -11578,7 +11578,7 @@ Tilemap:
       m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 3
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 5, y: -4, z: 0}
@@ -13285,7 +13285,7 @@ Tilemap:
     m_Data: {fileID: 545088137511263996, guid: 5396b8408a4f8d344822ce51d760c15c, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 4
+  - m_RefCount: 5
     m_Data: {fileID: 545088137511263996, guid: 857be2ebbb63b4642869799480e3dade, type: 3}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15171,15 +15171,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.23020835
+    x: 0.27708334
     y: 0
     width: 0.20833334
-    height: 0.32314813
+    height: 0.28703704
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4531255
+  orthographic size: 4.84375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

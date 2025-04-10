@@ -3746,6 +3746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6983732886807933011, guid: 33c3051f1d4040e4e8d3f8dd1173a412, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6348,7 +6352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &868686924
 Transform:
   m_ObjectHideFlags: 0
@@ -6912,7 +6916,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 29, y: -2, z: 0}
@@ -7002,7 +7006,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 38, y: -2, z: 0}
@@ -7012,7 +7016,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 39, y: -2, z: 0}
@@ -7292,7 +7296,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 39, y: 0, z: 0}
@@ -7342,7 +7346,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 28, y: 1, z: 0}
@@ -7352,7 +7356,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 29, y: 1, z: 0}
@@ -7362,7 +7366,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 30, y: 1, z: 0}
@@ -7942,7 +7946,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 37, y: 4, z: 0}
@@ -7952,7 +7956,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 38, y: 4, z: 0}
@@ -8192,7 +8196,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 31, y: 6, z: 0}
@@ -8202,7 +8206,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 32, y: 6, z: 0}
@@ -8242,7 +8246,7 @@ Tilemap:
       m_TileSpriteIndex: 10
       m_TileMatrixIndex: 4
       m_TileColorIndex: 3
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 36, y: 6, z: 0}
@@ -8733,7 +8737,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 17
+  - m_RefCount: 29
     m_Data: {fileID: 545088137511263996, guid: 857be2ebbb63b4642869799480e3dade, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 545088137511263996, guid: 5396b8408a4f8d344822ce51d760c15c, type: 3}
@@ -9496,7 +9500,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1013086981
 Transform:
   m_ObjectHideFlags: 0
@@ -10849,7 +10853,7 @@ Tilemap:
       m_TileSpriteIndex: 24
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 48, y: 2, z: 0}
@@ -10869,7 +10873,7 @@ Tilemap:
       m_TileSpriteIndex: 24
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 50, y: 2, z: 0}
@@ -10949,7 +10953,7 @@ Tilemap:
       m_TileSpriteIndex: 24
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 42, y: 3, z: 0}
@@ -10959,7 +10963,7 @@ Tilemap:
       m_TileSpriteIndex: 24
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
-      m_TileObjectToInstantiateIndex: 65535
+      m_TileObjectToInstantiateIndex: 2
       dummyAlignment: 0
       m_AllTileFlags: 2147483650
   - first: {x: 43, y: 3, z: 0}
@@ -11842,7 +11846,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 13
+  - m_RefCount: 17
     m_Data: {fileID: 545088137511263996, guid: 857be2ebbb63b4642869799480e3dade, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -17050,7 +17054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomIndex: 0
-  changeRoomTime: 1.2
+  changeRoomTime: 1.6
   gridInteraction: {fileID: 514258729}
   isStart: 1
 --- !u!61 &1575213830
@@ -17466,7 +17470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1612233800
 Transform:
   m_ObjectHideFlags: 0

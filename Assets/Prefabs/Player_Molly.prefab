@@ -269,6 +269,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   trapCooldown: 0.1
+  footstepRate: 0.4
 --- !u!114 &3252355486178535244
 MonoBehaviour:
   m_ObjectHideFlags: 0

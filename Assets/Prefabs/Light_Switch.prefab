@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7598569060346412674}
   - component: {fileID: 2705275335576604482}
   - component: {fileID: 7482973569102295559}
-  - component: {fileID: 1379814578261662763}
   m_Layer: 0
   m_Name: Light_Switch
   m_TagString: Interactable
@@ -104,6 +103,10 @@ MonoBehaviour:
   isActive: 0
   sprite: {fileID: 21300000, guid: fdd003a4dcfabd44d8de31453f3be0c6, type: 3}
   bedInteraction: {fileID: 0}
+  dreamSpace: {fileID: 0}
+  checkpoint: {fileID: 0}
+  hintToShow: {fileID: 0}
+  hintToHide: {fileID: 0}
 --- !u!114 &7598569060346412674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +122,7 @@ MonoBehaviour:
   isActive: 0
   deactivateOnEnd: 0
   sightRange: 36
+  sightRangeDifference: 2
   sightTransparency: 1
   flickering: 1
   flickeringSpeed: 4
@@ -194,24 +198,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!95 &1379814578261662763
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7951744713209885593}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 00c408dce158a654b8ce005adcaa318f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

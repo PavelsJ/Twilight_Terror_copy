@@ -24,8 +24,6 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
     
     void Start()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
-
         if (movePoint != null)
         {
             movePoint.parent = null;
@@ -35,6 +33,17 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
         
         spriteMask.enabled = false;
     }
+    
+     private void OnEnable()
+    {
+        Player_Movement_Manager.Instance.RegisterEnemy(this);
+    }
+    
+    private void OnDisable()
+    {
+        Player_Movement_Manager.Instance.DeregisterEnemy(this);
+    }
+    
     void Update()
     {
         if (isMoving && movePoint != null)

@@ -27,7 +27,6 @@ public class Enemy_Dung_Eater_Movement : MonoBehaviour, IEnemy, IInteractable
     
     void Start()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
         currentDirection = firstDirection;
         
         if (movePoint != null)
@@ -36,6 +35,16 @@ public class Enemy_Dung_Eater_Movement : MonoBehaviour, IEnemy, IInteractable
         }
         
         StartCoroutine(DelayedStart());
+    }
+    
+    private void OnEnable()
+    {
+        Player_Movement_Manager.Instance.RegisterEnemy(this);
+    }
+    
+    private void OnDisable()
+    {
+        Player_Movement_Manager.Instance.DeregisterEnemy(this);
     }
     
     IEnumerator DelayedStart()

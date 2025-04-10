@@ -138,7 +138,7 @@ public class Grid_Manager : MonoBehaviour
             Player_Movement.Instance.movePoint.position = cutscene.playerTargetPos.position;
             player.transform.position = cutscene.playerTargetPos.position;
             
-            player.SetActive((true));
+            player.SetActive(true);
         }
         
         Player_Movement.Instance.isDisable = false;

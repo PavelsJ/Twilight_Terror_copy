@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,8 +28,6 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
     
     void Start()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
-
         if (movePoint != null)
         {
             
@@ -38,7 +37,19 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
         fodAgent = player.GetComponent<FOD_Agent>();
         spriteMask.enabled = false;
     }
+
     
+    private void OnEnable()
+    {
+        Player_Movement_Manager.Instance.RegisterEnemy(this);
+    }
+    
+    private void OnDisable()
+    {
+        Player_Movement_Manager.Instance.DeregisterEnemy(this);
+    }
+
+
     public void OnPlayerMoved()
     {
         if (isMoving || movePoint == null) return;
