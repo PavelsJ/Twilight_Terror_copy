@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 1109988301744086290}
   - component: {fileID: 5594590709846486231}
   m_Layer: 0
-  m_Name: Player_Molly
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

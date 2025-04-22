@@ -9,19 +9,18 @@ public class Light_Switch_Interaction : MonoBehaviour
     public bool isActive = false;
     public Sprite sprite;
     
+    [Header("Compounds")]
     public Bed_Interaction bedInteraction;
-
-    public GameObject dreamSpace;
+    public Grid_Manager gridManager;
+    
     public GameObject checkpoint;
-    public GameObject hintToShow;
-    public GameObject hintToHide;
     
     private FOD_Manager manager;
     private Transform player;
 
     private void Start()
     {
-        manager = FindObjectOfType<FOD_Manager>(true).GetComponent<FOD_Manager>();
+        manager = FindObjectOfType<FOD_Manager>(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,24 +50,15 @@ public class Light_Switch_Interaction : MonoBehaviour
 
         StartCoroutine(DisableWithDelay());
         
-        if (bedInteraction != null)
-        {
-            bedInteraction.endScene = true;
-            Player_Movement_Manager.Instance.isInvulnerable = true;
-        }
+        HandleBedInteraction();
         
         GetComponent<SpriteRenderer>().sprite = sprite;
-        manager.StartCoroutine(manager.DisableWithDelay());
+        manager.RemoveAgentsGradually(true);
     }
 
     private IEnumerator DisableWithDelay()
     {
         Player_Movement.Instance.isDisable = true;
-        
-        if (dreamSpace != null)
-        {
-            dreamSpace.SetActive(true);
-        }
 
         if (checkpoint != null)
         {
@@ -77,18 +67,25 @@ public class Light_Switch_Interaction : MonoBehaviour
             checkpoint.GetComponent<FOD_Agent>().enabled = false;
         }
         
-        if (hintToShow != null)
-        {
-            hintToShow.SetActive(true);
-        }
-
-        if (hintToHide != null)
-        {
-            hintToHide.SetActive(false);
-        }
+        HandleHintsInteraction();
         
         yield return new WaitForSeconds(0.5f);
+        
+        gridManager.ResetSectorsState();
         Player_Movement.Instance.isDisable = false;
     }
-    
+
+    protected virtual void HandleHintsInteraction()
+    {
+        
+    }
+
+    private void HandleBedInteraction()
+    {
+        if (bedInteraction != null)
+        {
+            bedInteraction.endScene = true;
+            Player_Movement_Manager.Instance.isInvulnerable = true;
+        }
+    }
 }

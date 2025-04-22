@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using FODMapping;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class Player_Movement_Manager : MonoBehaviour
     
     [Header("Compounds")]
     private Player_Stats stats;
+    private FOD_Manager manager;
     private List<IEnemy> enemies = new List<IEnemy>();
     
     private void Awake()
@@ -42,6 +44,8 @@ public class Player_Movement_Manager : MonoBehaviour
         }
         
         stats = GetComponent<Player_Stats>();
+        manager = FindObjectOfType<FOD_Manager>(true);
+        
         Save_Manager.Instance.SaveScene();
     }
 
@@ -85,8 +89,9 @@ public class Player_Movement_Manager : MonoBehaviour
         {
             stats.UpdateMoveCount();
         
-            foreach (var enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
+                var enemy = enemies[i];
                 if (enemy is MonoBehaviour { gameObject: { activeInHierarchy: true } })
                 {
                     enemy.OnPlayerMoved();
@@ -98,6 +103,11 @@ public class Player_Movement_Manager : MonoBehaviour
     public void AddSteps(int amount)
     {
        stats.AddSteps(amount);
+    }
+    
+    public void AddLife()
+    {
+        stats.AddLife();
     }
 
     public void ActivateCentipedeChase()
@@ -141,8 +151,6 @@ public class Player_Movement_Manager : MonoBehaviour
 
     private void ActivateFog()
     {
-        FOD_Manager manager = FindObjectOfType<FOD_Manager>(true);
-        
         if (manager != null)
         {
             manager.gameObject.SetActive(true);
@@ -168,5 +176,27 @@ public class Player_Movement_Manager : MonoBehaviour
         {
             stats.SetMaxSteps();
         }
+    }
+
+    public void SetNewStats()
+    {
+        stats.DescreasePlayerLives();
+    }
+
+    public void RestartGame()
+    {
+        StartCoroutine(RestartCoroutine());
+    }
+    
+    private IEnumerator RestartCoroutine()
+    {
+        if (manager != null)
+        {
+            manager.RemoveAgentsGradually();
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

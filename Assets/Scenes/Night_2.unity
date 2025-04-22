@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2403534826325709074, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2403534826325709074, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -636,6 +636,14 @@ PrefabInstance:
     - target: {fileID: 4331654665753929182, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
       propertyPath: isMoving
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331654665753929182, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
+      propertyPath: firstDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4331654665753929182, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
+      propertyPath: firstDirection.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7723592638218693793, guid: 502620ec3d0c23147b5e5e11bbcd3e8b, type: 3}
       propertyPath: m_Name
@@ -762,8 +770,10 @@ MonoBehaviour:
   stepCount: 20
   playerLives: 2
   healthSlot: {fileID: 50890954}
-  damagedHealthSlot: {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
-  zeroHealthSlot: {fileID: 1581913668, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  healthSprites:
+  - {fileID: 2046970316, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 1581913668, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
   stepCountText: {fileID: 50890953}
 --- !u!1 &134725276
 GameObject:
@@ -2365,7 +2375,6 @@ MonoBehaviour:
   sectorPosParent: {fileID: 2062825085}
   playerTargetPos: {fileID: 120543965}
   shakeCamera: {fileID: 514258730}
-  cutscene: {fileID: 0}
 --- !u!114 &514258730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10781,9 +10790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomIndex: 0
-  changeRoomTime: 1.6
+  transitionTime: 1.6
   gridInteraction: {fileID: 514258729}
-  isStart: 1
 --- !u!61 &1575213830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13323,9 +13331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextRoomIndex: 1
-  changeRoomTime: 1.6
+  transitionTime: 1.6
   gridInteraction: {fileID: 514258729}
-  isStart: 0
 --- !u!61 &1612233806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14653,7 +14660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3277931307091532732, guid: f911bd04377294549b07c821a2df461e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.5
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 3277931307091532732, guid: f911bd04377294549b07c821a2df461e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15171,15 +15178,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.27708334
+    x: 0.30208334
     y: 0
     width: 0.20833334
-    height: 0.28703704
+    height: 0.37870368
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.84375
+  orthographic size: 3.1953125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -15437,6 +15444,10 @@ PrefabInstance:
       propertyPath: dreamSpace
       value: 
       objectReference: {fileID: 543729014}
+    - target: {fileID: 4730266873285055801, guid: 5da4cd926d084de4fbb19f5dd6f79a36, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 514258729}
     - target: {fileID: 4730266873285055801, guid: 5da4cd926d084de4fbb19f5dd6f79a36, type: 3}
       propertyPath: bedInteraction
       value: 

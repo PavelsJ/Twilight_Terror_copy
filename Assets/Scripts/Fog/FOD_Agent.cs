@@ -90,7 +90,7 @@ public class FOD_Agent : MonoBehaviour
         }
     }
     
-    private void ActivateAgent()
+    public void ActivateAgent()
     {
         if (isActive) return;
         
@@ -109,7 +109,7 @@ public class FOD_Agent : MonoBehaviour
     private void StartAgent(float duration = 1f)
     {
         StopFlickering();
-        StartCoroutine(ChangeRadiusSmoothly(0, currentRadius, duration));
+        updateRoutine = StartCoroutine(ChangeRadiusSmoothly(0, currentRadius, duration));
     }
 
     public void EndAgent(float duration = 0.7f)

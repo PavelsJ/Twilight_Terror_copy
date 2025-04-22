@@ -17,7 +17,6 @@ public class Grid_Manager : MonoBehaviour
     [Header("References")]
     
     public Shake_Camera_Manager shakeCamera;
-    public Cutscene cutscene;
     private FOD_Manager manager;
     
     private List<Transform> sectorPos;
@@ -30,9 +29,9 @@ public class Grid_Manager : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var sector in midSectors)
+        for (int i = 0; i < midSectors.Length; i++)
         {
-            sector.gameObject.SetActive(false);
+            ActivateSector(i, false);
         }
     }
     
@@ -62,15 +61,6 @@ public class Grid_Manager : MonoBehaviour
         }
     }
 
-    public void OnStart(int index, float time)
-    {
-        if (!isActive)
-        {
-            StartCoroutine(MoveSectorsSimultaneously(index, time));
-            isActive = true;
-        }
-    }
-
     public void OnActive(int sectorPosIndex, float time)
     {
         StartCoroutine(MoveSectorsSimultaneously(sectorPosIndex, time));
@@ -80,8 +70,7 @@ public class Grid_Manager : MonoBehaviour
     {
         StartCoroutine(MoveSector(lastSector, sectorPos[index + 1].position, time));
         yield return new WaitForSeconds(0.4f);
-        midSectors[index].gameObject.SetActive(true);
-        Physics2D.SyncTransforms();
+        ActivateSector(index, true);
     }
 
     private IEnumerator MoveSector(Transform sector, Vector2 targetPos, float moveDuration)
@@ -106,7 +95,7 @@ public class Grid_Manager : MonoBehaviour
         shakeCamera.ShakeCamera(0);
     }
 
-    public void ChangeGridState()
+    public void ResetSectorsState()
     {
         GameObject player = Player_Movement.Instance.gameObject;
         Player_Movement_Manager.Instance.enemy.gameObject.SetActive(false);
@@ -121,26 +110,20 @@ public class Grid_Manager : MonoBehaviour
         
         lastSector.position = firstPos;
 
-        foreach (var sector in midSectors)
+        for (int i = 0; i < midSectors.Length; i++)
         {
-            sector.gameObject.SetActive(false);
+            ActivateSector(i, false);
         }
-        
-        Physics2D.SyncTransforms();
     }
 
-    public void SetCutscene()
+    public void ChangeSectorState(int index)
     {
-        GameObject player = Player_Movement.Instance.gameObject;
-        
-        if (player != null && cutscene != null)
-        {
-            Player_Movement.Instance.movePoint.position = cutscene.playerTargetPos.position;
-            player.transform.position = cutscene.playerTargetPos.position;
-            
-            player.SetActive(true);
-        }
-        
-        Player_Movement.Instance.isDisable = false;
+        lastSector.position = sectorPos[index + 1].position;
+        ActivateSector(index, true);
+    }
+    
+    private void ActivateSector(int index, bool isActive)
+    {
+        midSectors[index].gameObject.SetActive(isActive);
     }
 }

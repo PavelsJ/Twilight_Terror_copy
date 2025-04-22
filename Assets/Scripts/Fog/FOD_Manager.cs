@@ -140,6 +140,7 @@ namespace FODMapping
             
             agentsBuffer.SetData(agentData);
             
+            fogMaterial.SetFloat("_TimeValue", Time.time);
             fogMaterial.SetInt("_AgentCount", agentCount);
             fogMaterial.SetBuffer("_Agents", agentsBuffer);
         }
@@ -168,62 +169,30 @@ namespace FODMapping
         }
 
         // Player Death
-        public void RemoveAgentsGradually()
+        public void RemoveAgentsGradually(bool gameEnd = false)
         {
             if (removeAgentsCoroutine != null)
             {
                 StopCoroutine(removeAgentsCoroutine);
             }
 
-            removeAgentsCoroutine = StartCoroutine(RemoveAgentsCoroutine());
+            removeAgentsCoroutine = StartCoroutine(RemoveAgentsCoroutine(gameEnd));
         }
 
-        private IEnumerator RemoveAgentsCoroutine()
+        private IEnumerator RemoveAgentsCoroutine(bool gameEnd)
         {
-            foreach (var agent in agents)
-            {
-                agent.EndAgent(0.5f);
-            }
-
-            yield return new WaitForSeconds(0.5f);
-
-            DisableFOV();
-            SetFogVisibility(false);
-            
-            Debug.Log("Game Over");
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        // Player End of a Room
-        public IEnumerator DisableWithDelay(bool cutscene = false)
-        {
-            if (removeAgentsCoroutine != null)
-            {
-                StopCoroutine(removeAgentsCoroutine);
-            }
-
             foreach (var agent in agents)
             {
                 agent.EndAgent(0.4f);
             }
 
             yield return new WaitForSeconds(0.5f);
-            
-            if (grid != null && cutscene)
+
+            if (gameEnd)
             {
-                //Player Cutscene
-                grid.SetCutscene();
-                yield break;
+                DisableFOV();
+                SetFogVisibility(false);
             }
-            
-            if (grid != null)
-            {
-                grid.ChangeGridState();
-            }
-            
-            DisableFOV();
-            SetFogVisibility(false);
         }
         
         public void SetFogVisibility(bool visible)

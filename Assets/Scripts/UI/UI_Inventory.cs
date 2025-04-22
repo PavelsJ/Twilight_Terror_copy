@@ -92,8 +92,17 @@ public class UI_Inventory : MonoBehaviour
             Music_Manager.instance.PlaySound(Music_Manager.SoundType.ItemExpire);
             
             GameObject child = itemSlots[selectedSlotIndex].transform.GetChild(0).gameObject;
-            var steps = child.GetComponent<UI_Extra_Steps>().extraSteps;
+            
+            var extraComponent = child.GetComponent<UI_Extra_Steps>();
+            int steps = extraComponent.extraSteps;
+            int lives = extraComponent.extraLives;
+
             Player_Movement_Manager.Instance.AddSteps(steps);
+
+            if (lives > 0)
+            {
+                Player_Movement_Manager.Instance.AddLife();
+            }
 
             Destroy(child);
             

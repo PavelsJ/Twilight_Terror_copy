@@ -23,7 +23,7 @@ public class Checkpoint_Interaction : MonoBehaviour
         agent = GetComponent<FOD_Agent>();
         animator = GetComponent<Animator>();
 
-        if (agent != null)
+        if (agent != null )
         {
             agent.enabled = false;
         }
@@ -79,7 +79,14 @@ public class Checkpoint_Interaction : MonoBehaviour
         
         if (agent != null)
         {
-            agent.enabled = true;
+            if (agent.enabled)
+            {
+                agent.ActivateAgent();
+            }
+            else
+            {
+                agent.enabled = true;
+            }
         }
         
         if (fire != null)
@@ -88,5 +95,31 @@ public class Checkpoint_Interaction : MonoBehaviour
         }
         
         Debug.Log("Checkpoint Activated!");
+    }
+    
+    public void DeactivateCheckpoint()
+    {
+        isActive = false;
+        isInvincible = false;
+        enemyTooClose = false;
+        
+        player = null;
+
+        if (agent != null)
+        {
+            agent.EndAgent();
+        }
+        
+        if (fire != null)
+        {
+            fire.Activate();
+        }
+
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.SetInvulnerability(false);
+        }
+
+        Debug.Log("Checkpoint Deactivated!");
     }
 }

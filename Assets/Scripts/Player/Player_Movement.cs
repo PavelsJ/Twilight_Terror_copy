@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FODMapping;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Player_Movement : MonoBehaviour
@@ -235,12 +236,7 @@ public class Player_Movement : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
         
-        FOD_Manager manager = FindObjectOfType<FOD_Manager>(true);
-        
-        if (manager != null)
-        {
-            manager.RemoveAgentsGradually();
-        }
+        Player_Movement_Manager.Instance.RestartGame();
        
         gameObject.SetActive(false);
     }

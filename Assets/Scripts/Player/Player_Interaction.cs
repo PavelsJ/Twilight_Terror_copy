@@ -39,12 +39,7 @@ public class Player_Interaction : MonoBehaviour
         
         yield return new WaitForSeconds(0.7f);
         
-        FOD_Manager manager = FindObjectOfType<FOD_Manager>(true);
-        
-        if (manager != null)
-        {
-            manager.RemoveAgentsGradually();
-        }
+        Player_Movement_Manager.Instance.RestartGame();
        
         gameObject.SetActive(false);
     }

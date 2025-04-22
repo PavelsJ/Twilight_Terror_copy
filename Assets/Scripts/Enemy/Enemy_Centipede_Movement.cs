@@ -34,12 +34,18 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     
     private void OnEnable()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.RegisterEnemy(this);
+        }
     }
     
     private void OnDisable()
     {
-        Player_Movement_Manager.Instance.DeregisterEnemy(this);
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.DeregisterEnemy(this);
+        }
     }
     void Update()
     {

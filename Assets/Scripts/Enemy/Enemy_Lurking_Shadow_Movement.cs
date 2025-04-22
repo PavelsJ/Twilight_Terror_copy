@@ -30,7 +30,6 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
     {
         if (movePoint != null)
         {
-            
             movePoint.parent = PathFinding_Manager.Instance.transform;
         }
         
@@ -41,12 +40,18 @@ public class Enemy_Lurking_Shadow_Movement : MonoBehaviour, IEnemy, IInteractabl
     
     private void OnEnable()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.RegisterEnemy(this);
+        }
     }
     
     private void OnDisable()
     {
-        Player_Movement_Manager.Instance.DeregisterEnemy(this);
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.DeregisterEnemy(this);
+        }
     }
 
 

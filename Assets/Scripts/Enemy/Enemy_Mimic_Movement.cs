@@ -16,9 +16,23 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
 
     void Start()
     {
-        Player_Movement_Manager.Instance.RegisterEnemy(this);
-
         targetPosition = transform.position;
+    }
+    
+    private void OnEnable()
+    {
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.RegisterEnemy(this);
+        }
+    }
+    
+    private void OnDisable()
+    {
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.DeregisterEnemy(this);
+        }
     }
 
     public void OnPlayerMoved()

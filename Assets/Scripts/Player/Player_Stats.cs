@@ -8,13 +8,13 @@ public class Player_Stats : MonoBehaviour
 {
     [Header("Player Stats")] 
     public int stepCount = 20;
-    public int playerLives = 3;
+    public int playerLives = 2;
+    private readonly int radiusShrinkValue = 12;
    
     [Header("UI Settings")]
     public Image healthSlot;
-    
-    public Sprite damagedHealthSlot;
-    public Sprite zeroHealthSlot;
+
+    public Sprite[] healthSprites;
     
     private int maxStepCount;
     public TextMeshProUGUI stepCountText;
@@ -42,6 +42,18 @@ public class Player_Stats : MonoBehaviour
         stepCount = maxStepCount;
         UpdateStepCountText();
     }
+    
+    public void AddLife()
+    {
+        playerLives++;
+        
+        maxStepCount *= 2;
+        
+        float radius = agent.GetRadius();
+        agent.ChangeRadiusValue(radius + radiusShrinkValue);
+        
+        UpdateStepCountText();
+    }
 
     public void UpdateMoveCount()
     {
@@ -65,15 +77,15 @@ public class Player_Stats : MonoBehaviour
         {
             playerLives--;
             
-            healthSlot.sprite = damagedHealthSlot;
+            healthSlot.sprite = healthSprites[playerLives];
            
             float radius = agent.GetRadius();
-            agent.ChangeRadiusValue(radius - 12);
+            agent.ChangeRadiusValue(radius - radiusShrinkValue);
             
             if (playerLives <= 0)
             {
                 Player_Movement_Manager.Instance.ActivateCentipedeChase();
-                healthSlot.sprite = zeroHealthSlot;
+                healthSlot.sprite = healthSprites[0];
                 maxStepCount = stepCount;
                 UpdateStepCountText();
                 return;
@@ -81,6 +93,26 @@ public class Player_Stats : MonoBehaviour
             
             stepCount += maxStepCount / 2;
             maxStepCount = stepCount;
+        }
+        
+        UpdateStepCountText();
+    }
+
+    public void DescreasePlayerLives()
+    {
+        if (maxStepCount >= 10)
+        {
+            stepCount = maxStepCount / 2;
+            maxStepCount = stepCount;
+        }
+        
+        if (playerLives > 1)
+        {
+            playerLives--;
+            
+            float radius = agent.GetRadius();
+            agent.ChangeRadiusValue(radius -  radiusShrinkValue);
+            healthSlot.sprite = healthSprites[playerLives];
         }
         
         UpdateStepCountText();

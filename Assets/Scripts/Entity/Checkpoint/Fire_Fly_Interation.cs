@@ -53,6 +53,15 @@ public class Fire_Fly_Interation : MonoBehaviour
     {
         return player.position;
     }
+    
+    public void Activate()
+    {
+        for (int i = fireflies.Count - 1; i >= 0; i--)
+        {
+            fireflies[i].transform.position = GetRandomPosition();
+            fireflies[i].gameObject.SetActive(true);
+        }
+    }
 
     public void Deactivate()
     {
@@ -65,7 +74,7 @@ public class Fire_Fly_Interation : MonoBehaviour
         {
             yield return fireflies[i].FadeOut(); 
             fireflies[i].gameObject.SetActive(false);
-            fireflies.RemoveAt(i);
+            // fireflies.RemoveAt(i);
         }
     }
 }
