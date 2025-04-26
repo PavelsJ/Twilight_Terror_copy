@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Mimic_Cutscene2_Script : Change_Room_Script
 {
+    
     public Shake_Camera_Manager shakeCamera;
-    public Light_Switch_Destruction lightDestruction; 
+    public Light_Switch_Cutscene lightDestruction;
+    public Enemy_Mimic_Cutscene_1 cutsceneMimic;
+    
     protected override void ChangeRoom()
     {
         isActive = true;
@@ -15,20 +18,33 @@ public class Mimic_Cutscene2_Script : Change_Room_Script
     private IEnumerator PlayCutscene()
     {
         player.GetComponent<FOD_Agent>().SetMinRadiusValue();
+
+        StartCoroutine(DisableDelay(transitionTime + 2.4f));
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Noise);
         
-        lightDestruction.OnCutscene();
-        StartCoroutine(DisableDelay());
+        cutsceneMimic.gameObject.SetActive(true);
+        cutsceneMimic.OnCutscene();
         
-        //shakeCamera.ShakeCamera(0.5f);
+        lightDestruction.OnCutscene1();
+       
+        yield return new WaitForSeconds(0.6f);
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        lightDestruction.OnCutscene2();
         
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Shake);
+        yield return new WaitForSeconds(0.6f);
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        
+        yield return new WaitForSeconds(0.8f);
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        
+        yield return new WaitForSeconds(0.4f);
+        lightDestruction.OnCutscene3();
+        
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
         
         yield return new WaitForSeconds(transitionTime);
         
-        //shakeCamera.ShakeCamera(0);
-        
         gridInteraction.ChangeSectorState(0);
-        
         player.GetComponent<FOD_Agent>().SetMaxRadiusValue();
     }
 }

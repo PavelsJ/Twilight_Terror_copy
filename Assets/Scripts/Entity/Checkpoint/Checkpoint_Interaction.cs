@@ -122,4 +122,9 @@ public class Checkpoint_Interaction : MonoBehaviour
 
         Debug.Log("Checkpoint Deactivated!");
     }
+
+    public bool IsActive()
+    {
+        return isActive;
+    }
 }

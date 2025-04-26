@@ -2153,7 +2153,7 @@ PrefabInstance:
       objectReference: {fileID: 74377177}
     - target: {fileID: 3311691423523980076, guid: 33c3051f1d4040e4e8d3f8dd1173a412, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.25
+      value: 0.2916667
       objectReference: {fileID: 0}
     - target: {fileID: 3311691423523980076, guid: 33c3051f1d4040e4e8d3f8dd1173a412, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -2161,7 +2161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3311691423523980076, guid: 33c3051f1d4040e4e8d3f8dd1173a412, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6181892950871069382, guid: 33c3051f1d4040e4e8d3f8dd1173a412, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14656,7 +14656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 635867334699635400, guid: f911bd04377294549b07c821a2df461e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.375
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3277931307091532732, guid: f911bd04377294549b07c821a2df461e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15178,15 +15178,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.30208334
+    x: 0.18750001
     y: 0
-    width: 0.20833334
-    height: 0.37870368
+    width: 0.62500006
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.1953125
+  orthographic size: 4.2187495
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

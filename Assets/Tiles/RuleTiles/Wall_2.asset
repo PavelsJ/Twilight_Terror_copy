@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wall_2
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -2137057644, guid: 006c187d2eb2aad42b1dd652908e43c5, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 545088137511263996, guid: 5396b8408a4f8d344822ce51d760c15c, type: 3}
   m_DefaultColliderType: 2
   m_TilingRules:
   - m_Id: 0

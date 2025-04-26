@@ -5,14 +5,21 @@ using UnityEngine;
 
 public class Enemy_Interaction : MonoBehaviour
 {
+    private Enemy_Mimic_Movement mimicMovement;
+
+    private void Awake()
+    {
+        mimicMovement = GetComponent<Enemy_Mimic_Movement>();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
-            IInteractable interactable = other.GetComponent<IInteractable>();
-            if (interactable != null)
+            var switchPart = other.GetComponent<ISwitchPart>();
+            if (switchPart != null)
             {
-                interactable.DestroyObject();
+                switchPart.RandomizePosition();
+                mimicMovement.ResetTarget(); 
             }
         }
     }

@@ -24,7 +24,6 @@ public class Grid_Manager : MonoBehaviour
     
     private float transitionDuration;
     
-    private bool isActive = false;
     private bool isStart = true;
 
     private void Awake()

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2370316199623391256}
   - component: {fileID: 7256620462920816217}
   - component: {fileID: 5283911540565114672}
+  - component: {fileID: 5191488801531095829}
   - component: {fileID: 3072714052017283922}
   m_Layer: 10
   m_Name: Enemy_Larvae_Movement 1
@@ -106,6 +107,25 @@ MonoBehaviour:
   target: {fileID: 0}
   lightBulb: {fileID: 4713067512451778921, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
   bloodSplash: {fileID: 5431511895130689714, guid: 9a4dfd2d278a2ae4ba26b653adb66c08, type: 3}
+--- !u!114 &5191488801531095829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177187531242746034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b975b573f27f85438698fff0c4e35e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  deactivateOnEnd: 0
+  sightRange: 16
+  sightRangeDifference: 2
+  sightTransparency: 0.56
+  flickering: 1
+  flickeringSpeed: 4
 --- !u!61 &3072714052017283922
 BoxCollider2D:
   m_ObjectHideFlags: 0

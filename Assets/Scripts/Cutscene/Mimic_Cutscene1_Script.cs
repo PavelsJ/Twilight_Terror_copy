@@ -21,15 +21,9 @@ public class Mimic_Cutscene1_Script : Change_Room_Script
 
     private IEnumerator PlayCutscene()
     {
-        if (manager == null)
-        {
-            Debug.Log("FOD_Manager is empty");
-            yield break;
-        }
-        
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
         
-        StartCoroutine(DisableDelay());
+        StartCoroutine(DisableDelay(transitionTime + 0.4f));
         
         shakeCamera.ShakeCamera(0.5f);
         Player_Movement_Manager.Instance.SetNewStats();
@@ -43,7 +37,5 @@ public class Mimic_Cutscene1_Script : Change_Room_Script
         
         Player_Movement.Instance.movePoint.position = playerTargetPos.position;
         player.transform.position = playerTargetPos.position;
-        
-        Player_Movement.Instance.isDisable = false;
     }
 }

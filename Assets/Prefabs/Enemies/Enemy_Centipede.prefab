@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 7400467199684872965}
   - component: {fileID: 2261363455608047875}
   - component: {fileID: 9190630594488553176}
-  - component: {fileID: 5075396522916209073}
   - component: {fileID: 3616552162798870814}
   - component: {fileID: 3485173070270648770}
   m_Layer: 7
@@ -188,24 +187,9 @@ MonoBehaviour:
   isMoving: 1
   player: {fileID: 0}
   movePoint: {fileID: 3131541832222989814}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 2176
   detectionRange: 3
   spriteMask: {fileID: 7400467199684872965}
   copy: {fileID: 0}
---- !u!114 &5075396522916209073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8899120283995775043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb6c39cffb08f45ae9f5a9b294a099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &3616552162798870814
 BoxCollider2D:
   m_ObjectHideFlags: 0

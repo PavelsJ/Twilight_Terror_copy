@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathFinding_Manager : MonoBehaviour
 {
-     public static PathFinding_Manager Instance;
+    public static PathFinding_Manager Instance;
     
     [Header("Layer Settings")]
     public LayerMask wallLayer;
