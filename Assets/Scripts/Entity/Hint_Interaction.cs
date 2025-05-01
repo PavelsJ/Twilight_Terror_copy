@@ -2,21 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Hint_Interaction : MonoBehaviour
+public class Hint_Interaction : Entity_Motion
 {
+    [Header("Hint Settings")]
     public Sprite hint;
     public string hintText;
-    
     public UI_Hints hints;
-    
-    private bool played = false;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && !played)
+        if (other.gameObject.CompareTag("Player") && !isMoving)
         {
-            played = true;
+            isMoving = true;
             GetComponent<SpriteRenderer>().color = Color.gray;
             hints.ShowHint(hint, hintText);
         }
@@ -24,7 +23,7 @@ public class Hint_Interaction : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && played)
+        if (other.gameObject.CompareTag("Player") && isMoving)
         {
             hints.HideHint();
         }

@@ -378,7 +378,7 @@ TextureImporter:
       name: floor_12
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -399,8 +399,8 @@ TextureImporter:
       name: floor_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -420,7 +420,7 @@ TextureImporter:
       name: floor_14
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -441,7 +441,7 @@ TextureImporter:
       name: floor_15
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 32
         width: 32
         height: 32
@@ -462,8 +462,8 @@ TextureImporter:
       name: floor_16
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 160
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -483,7 +483,7 @@ TextureImporter:
       name: floor_17
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -504,7 +504,7 @@ TextureImporter:
       name: floor_18
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -525,7 +525,7 @@ TextureImporter:
       name: floor_19
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 0
         width: 32
         height: 32
@@ -538,6 +538,27 @@ TextureImporter:
       bones: []
       spriteID: d1f84dccad1368743af26db7dde543c4
       internalID: 678905417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor_20
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35072d0fa6755bf4581758c0ca9fd08c
+      internalID: 1559610528
       vertices: []
       indices: 
       edges: []
@@ -566,6 +587,7 @@ TextureImporter:
       floor_18: 1947957294
       floor_19: 678905417
       floor_2: 548314911
+      floor_20: 1559610528
       floor_3: -2057513389
       floor_4: 1079891557
       floor_5: 1454209817

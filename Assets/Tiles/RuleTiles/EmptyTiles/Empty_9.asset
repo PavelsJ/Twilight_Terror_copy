@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: Empty_9
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -509401337, guid: b8269c2843dce754280de37b4f8a9b57, type: 3}
+  m_DefaultSprite: {fileID: 1149491634, guid: b8269c2843dce754280de37b4f8a9b57, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 2
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -509401337, guid: b8269c2843dce754280de37b4f8a9b57, type: 3}
+    - {fileID: 1149491634, guid: b8269c2843dce754280de37b4f8a9b57, type: 3}
     - {fileID: -679354196, guid: 04b75b0e063943c4591f342efcb12ecf, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1

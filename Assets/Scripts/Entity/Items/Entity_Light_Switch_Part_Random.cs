@@ -21,6 +21,7 @@ public class Entity_Light_Switch_Part_Random : Entity_Light_Switch_Part, ISwitch
         if (mimic != null)
         {
             mimic.RemoveSwitchPart(parentPos.gameObject);
+            mimic.isSwapping = false;
         }
     }
     

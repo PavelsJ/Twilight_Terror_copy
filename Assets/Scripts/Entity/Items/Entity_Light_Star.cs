@@ -3,41 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity_Light_Star : MonoBehaviour, IInteractable
+public class Entity_Light_Star : Entity_Motion, IInteractable
 {
     public GameObject UIprefab;
-    private bool isMoving = false;
-    
-    [Header("Motion Settings")]
-    public float amplitude = 0.1f;
-    public float cycleDuration = 4f; 
-
-    private float startY;
-    private float timer;
-    
     private Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.SetTrigger("FadeIn");
-        
-        startY = transform.position.y;
-        timer = UnityEngine.Random.Range(0f, cycleDuration); 
-    }
-    
-    void Update()
-    {
-        if (!isMoving)
-        {
-            timer += Time.deltaTime;
-            float t = (Mathf.Sin((timer / cycleDuration) * 2 * Mathf.PI) + 1f) / 2f; 
-            float yOffset = Mathf.SmoothStep(-amplitude, amplitude, t);
-        
-            Vector3 pos = transform.position;
-            pos.y = startY + yOffset;
-            transform.position = pos;
-        }
     }
 
     public void DestroyObject()
