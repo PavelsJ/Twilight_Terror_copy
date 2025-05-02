@@ -18,6 +18,8 @@ public class Change_Room_Script : MonoBehaviour
         { 
             player = other.transform;
             isActive = true;
+            
+            DeactivateDoubleChoice();
             ChangeRoom();
         }
     }
@@ -36,5 +38,14 @@ public class Change_Room_Script : MonoBehaviour
         Player_Movement.Instance.isDisable = true;
         yield return new WaitForSeconds(time + 0.1f);
         Player_Movement.Instance.isDisable = false;
+    }
+
+    private void DeactivateDoubleChoice()
+    {
+        Change_Last_Sector changeLastSector = GetComponent<Change_Last_Sector>();
+        if (changeLastSector != null)
+        {
+            changeLastSector.ToggleSnapping();
+        }
     }
 }

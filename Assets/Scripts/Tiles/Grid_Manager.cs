@@ -15,16 +15,21 @@ public class Grid_Manager : MonoBehaviour
     public Transform playerTargetPos;
     
     [Header("References")]
-    
     public Shake_Camera_Manager shakeCamera;
     private FOD_Manager manager;
     
-    private List<Transform> sectorPos;
+    private readonly List<SectorPosGroup> sectorGroups = new();
     private Vector2 firstPos;
     
     private float transitionDuration;
-    
     private bool isStart = true;
+    
+    [Header("Definition")]
+    private static readonly Vector2 DEFAULT_PLAYER_POS = new Vector2(-4.5f, 1.5f);
+    private static readonly Vector2 DEFAULT_SECTOR_POS = Vector2.zero;
+    
+    private const float DEFAULT_MOVE_SPEED = 5f;
+    private const float DEFAULT_SHAKE_INTENSITY = 0.5f;
 
     private void Awake()
     {
@@ -44,64 +49,94 @@ public class Grid_Manager : MonoBehaviour
             manager.StartCoroutine(manager.EnableInstantly());
         }
         
-        sectorPos = sectorPosParent.GetComponentsInChildren<Transform>()
-            .Where(t => t != sectorPosParent)
-            .ToList();
+        foreach (Transform child in sectorPosParent)
+        {
+            var group = new SectorPosGroup();
+
+            if (child.childCount == 0)
+            {
+                group.sectorPos.Add(child);
+            }
+            else
+            {
+                group.sectorPos.AddRange(child.Cast<Transform>());
+            }
+
+            sectorGroups.Add(group);
+        }
         
-        firstPos = new Vector2(0, 0);
+        firstPos = DEFAULT_SECTOR_POS;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.D) && isStart)
         {
-            Player_Movement.Instance.MovePlayerTo(new Vector2(-4.5f, 1.5f));
+            Player_Movement.Instance.MovePlayerTo(DEFAULT_PLAYER_POS);
             isStart = false;
         }
     }
 
     public void OnActive(int sectorPosIndex, float time)
     {
+        if (sectorPosIndex + 1 >= sectorGroups.Count) return;
+        
         StartCoroutine(MoveSectorsSimultaneously(sectorPosIndex, time));
     }
     
     private IEnumerator MoveSectorsSimultaneously(int index, float time)
     {
-        StartCoroutine(MoveSector(lastSector, sectorPos[index + 1].position, time));
+        Transform target = GetSectorPosition(index);
+        
+        StartCoroutine(MoveSector(lastSector, target.position, time));
         yield return new WaitForSeconds(0.4f);
         ActivateSector(index, true);
     }
 
+    public void PlaceSectorsInstantly(int index, int choice = 0)
+    {
+        if (index + 1 >= sectorGroups.Count) return;
+        
+        Transform target = GetSectorPosition(index, choice);
+        PlaceSector(lastSector, target.position);
+    }
+
     private IEnumerator MoveSector(Transform sector, Vector2 targetPos, float moveDuration)
     {
-        float moveSpeed = 5;
         float elapsedTime = 0f;
         Vector2 direction = (targetPos - (Vector2)sector.position).normalized; 
-        float maxShakeIntensity = 0.5f;
-
+       
         while (elapsedTime < moveDuration)
         {
-            float shakeStrength = Mathf.SmoothStep(0f, maxShakeIntensity, elapsedTime / moveDuration);
+            float shakeStrength = Mathf.SmoothStep(0f, DEFAULT_SHAKE_INTENSITY, elapsedTime / moveDuration);
 
-            sector.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            sector.position += (Vector3)(direction * DEFAULT_MOVE_SPEED * Time.deltaTime);
             shakeCamera.ShakeCamera(shakeStrength);
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        PlaceSector(sector, targetPos);
         
-        sector.position = targetPos;
         shakeCamera.ShakeCamera(0);
+    }
+
+    private void PlaceSector(Transform sector, Vector2 targetPos)
+    {
+        sector.position = targetPos;
     }
 
     public void ResetSectorsState()
     {
-        GameObject player = Player_Movement.Instance.gameObject;
+        var playerMovement = Player_Movement.Instance;
+        GameObject player = playerMovement.gameObject;
+        
         Player_Movement_Manager.Instance.enemy.gameObject.SetActive(false);
         
         if (player != null)
         {
-            Player_Movement.Instance.movePoint.position = playerTargetPos.position;
+            playerMovement.movePoint.position = playerTargetPos.position;
             player.transform.position = playerTargetPos.position;
             
             player.SetActive((true));
@@ -117,7 +152,7 @@ public class Grid_Manager : MonoBehaviour
 
     public void ChangeSectorState(int index)
     {
-        lastSector.position = sectorPos[index + 1].position;
+        lastSector.position = GetSectorPosition(index).position;
         ActivateSector(index, true);
     }
     
@@ -125,4 +160,25 @@ public class Grid_Manager : MonoBehaviour
     {
         midSectors[index].gameObject.SetActive(isActive);
     }
+    
+    private Transform GetSectorPosition(int index, int choice = 0)
+    {
+        return sectorGroups[index + 1].sectorPos[choice];
+    }
+
+    public List<Transform> GetSectorGroup(int index)
+    {
+        if (index < 0 || index >= sectorGroups.Count)
+            return new List<Transform>();
+
+        return new List<Transform>(sectorGroups[index + 1].sectorPos);
+    }
+    
 }
+
+[System.Serializable]
+public class SectorPosGroup
+{
+    public List<Transform> sectorPos = new List<Transform>();
+}
+

@@ -72,4 +72,6 @@ public class Enemy_Worm_Burrow : MonoBehaviour, IEnemy
         yield return new WaitForSeconds(0.2f);
         worm.SetActive(false);
     }
+    
+    
 }

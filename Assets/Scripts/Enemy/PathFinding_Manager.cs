@@ -8,7 +8,6 @@ public class PathFinding_Manager : MonoBehaviour
     
     [Header("Layer Settings")]
     public LayerMask wallLayer;
-    public LayerMask boxLayer;
     
     private Dictionary<Vector3, List<Vector3>> cachedPaths = new Dictionary<Vector3, List<Vector3>>();
     private HashSet<Vector3> boxPositions = new HashSet<Vector3>();
@@ -114,6 +113,7 @@ public class PathFinding_Manager : MonoBehaviour
     {
         return boxPositions.Contains(pos);
     }
+    
     
     public void ClearCache()
     {

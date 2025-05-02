@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Mimic_Cutscene4_Script : MonoBehaviour
 {
-    public Transform midPoint;
-
-    public Transform playerMovePoint;
-    public Transform playerTransform;
-
-    public Transform enemyMovePoint;
-    public Transform enemyTransform;
+    public float cutsceneDuration = 3f;
+    
+    public GameObject cutsceneCamera;
+    public GameObject mainCamera;
     
     public Enemy_Mimic_Movement mimicMovement;
     private bool isActive;
@@ -21,9 +18,27 @@ public class Mimic_Cutscene4_Script : MonoBehaviour
         {
             if (!isActive && mimicMovement != null)
             {
-                mimicMovement.ActivateMimic();
                 isActive = true;
+                StartCoroutine(OnCutscene());
+                mimicMovement.ActivateMimic();
+               
             }
         }
+    }
+
+    private IEnumerator OnCutscene()
+    {
+        Player_Movement.Instance.isDisable = true;
+        cutsceneCamera.SetActive(true);
+        mainCamera.SetActive(false);
+
+        yield return new WaitForSeconds(cutsceneDuration);
+
+        cutsceneCamera.SetActive(false);
+        mainCamera.SetActive(true);
+        
+        yield return new WaitForSeconds(0.2f);
+        
+        Player_Movement.Instance.isDisable = false;
     }
 }

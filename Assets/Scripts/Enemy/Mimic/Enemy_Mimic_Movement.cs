@@ -13,7 +13,6 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
     private bool isActive = false;
     private bool isMoving = false;
     
-    private bool isBlocking = false;
     public bool isSwapping = false;
     
     private GameObject currentTarget;
@@ -23,7 +22,6 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
     public List<GameObject> switchParts = new List<GameObject>();
     
     private GameObject lastSwitchedPart = null;
-    private GameObject lastNearestSwitch = null;
     
     [Header("Compounds")]
     public GameObject[] mimicParts;
@@ -88,8 +86,11 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
                 isMoving = false; 
             }
         }
-        
-        TrySwapWithPlayer();
+
+        if (!isMoving)
+        {
+            TrySwapWithPlayer();
+        }
     }
    
     private void MoveTowardsTarget()

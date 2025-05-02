@@ -19,7 +19,6 @@ public class Camera_Manager : MonoBehaviour
 
     void Start()
     {
-        
         if (PlayerPrefs.HasKey("StartCutscene_" + buildIndex))
         {
             transitionCamera.SetActive(false);

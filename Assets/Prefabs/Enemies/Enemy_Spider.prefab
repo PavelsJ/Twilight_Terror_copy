@@ -203,10 +203,7 @@ MonoBehaviour:
   movePoint: {fileID: 159853900327375097}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 2176
-  boxLayer:
-    serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2240
   spriteMask: {fileID: 5529628932470405732}
   bloodSplash: {fileID: 411243122929740054}
 --- !u!1 &7481929116189779360

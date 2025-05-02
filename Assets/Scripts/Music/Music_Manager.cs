@@ -53,7 +53,6 @@ public class Music_Manager : MonoBehaviour
     }
     
     
-    
     private void Awake()
     {
         if (instance == null)
