@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Copy_Past_Movement : MonoBehaviour
+public class Copy_Centipede_Movement : MonoBehaviour
 {
     public Transform previousPart; 
     public float speed = 5f;
@@ -11,13 +11,13 @@ public class Copy_Past_Movement : MonoBehaviour
     private Vector3 previousPosition; 
     private Vector3 targetPosition;
     
-    private Copy_Past_Movement previousSegment; 
+    private Copy_Centipede_Movement previousSegment; 
 
     private void Start()
     {
         if (previousPart != null)
         {
-            previousSegment = previousPart.GetComponent<Copy_Past_Movement>();
+            previousSegment = previousPart.GetComponent<Copy_Centipede_Movement>();
         }
 
         previousPosition = transform.position;

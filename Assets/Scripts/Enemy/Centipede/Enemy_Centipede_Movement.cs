@@ -20,7 +20,7 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     public SpriteMask spriteMask;
     
     [Header("Compounds")]
-    public Copy_Past_Movement copy;
+    public Copy_Centipede_Movement copy;
     
     void Start()
     {

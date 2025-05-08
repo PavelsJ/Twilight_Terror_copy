@@ -19,12 +19,8 @@ public class Player_Interaction : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
-            IEnemy enemy = other.GetComponent< IEnemy>();
-            if (enemy != null)
-            {
-                Player_Movement.Instance.isDead = true;
-                StartCoroutine(KillPlayer());
-            }
+            Player_Movement.Instance.isDead = true;
+            StartCoroutine(KillPlayer());
         }
     }
 

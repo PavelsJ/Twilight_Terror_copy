@@ -27,20 +27,17 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
         movePoint.position = transform.position;
         
         GetComponent<FOD_Agent>().enabled = true;
+        
+        if (Player_Movement_Manager.Instance != null)
+        {
+            Player_Movement_Manager.Instance.RegisterEnemy(this);
+        }
     }
     void Start()
     {
         if (movePoint != null)
         {
             movePoint.parent = PathFinding_Manager.Instance.transform;
-        }
-    }
-    
-    private void OnEnable()
-    {
-        if (Player_Movement_Manager.Instance != null)
-        {
-            Player_Movement_Manager.Instance.RegisterEnemy(this);
         }
     }
     

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Copy_Movement : MonoBehaviour
+public class Copy_Mimic_Movement : MonoBehaviour
 {
     public Transform target;
     public float distance = 0.1f;

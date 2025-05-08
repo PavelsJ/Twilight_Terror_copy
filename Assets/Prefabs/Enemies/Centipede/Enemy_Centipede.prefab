@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3131541832222989814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_Move_Point
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 9190630594488553176}
   - component: {fileID: 3616552162798870814}
   - component: {fileID: 3485173070270648770}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Enemy_Centipede
   m_TagString: Enemy
   m_Icon: {fileID: 0}
