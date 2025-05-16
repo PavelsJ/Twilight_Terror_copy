@@ -598,9 +598,9 @@ MonoBehaviour:
   playerLives: 2
   healthSlot: {fileID: 50890954}
   healthSprites:
-  - {fileID: 2046970316, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
-  - {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
   - {fileID: 1581913668, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 2046970316, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
   stepCountText: {fileID: 50890953}
 --- !u!1 &135750676
 GameObject:
@@ -16545,15 +16545,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18750001
+    x: 0.3072917
     y: 0
-    width: 0.62500006
-    height: 1
+    width: 0.20833334
+    height: 0.18425925
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.2187495
+  orthographic size: 3.109375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

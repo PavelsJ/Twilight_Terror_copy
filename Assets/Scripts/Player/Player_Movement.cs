@@ -36,6 +36,7 @@ public class Player_Movement : MonoBehaviour
     private float footstepTimer = 0f;
     
     [Header("Compounds")]
+    public Animator animator;
     private SpriteRenderer spriteRenderer;
     private FOD_Agent agent;
     
@@ -61,6 +62,11 @@ public class Player_Movement : MonoBehaviour
     {
         movePoint.parent = Player_Movement_Manager.Instance.transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     public void StartAgent(bool isActive)
@@ -100,9 +106,14 @@ public class Player_Movement : MonoBehaviour
                 return;
             }
 
-            if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
+            float distance = Vector3.Distance(transform.position, movePoint.position);
+
+            if (distance <= 0.05f)
             {
+                animator.SetBool("isMoving", false);
+                
                 Vector3 direction = HandleInput();
+                
                 if (direction != Vector3.zero && !isDisable)
                 {
                     HandleMove(direction);
@@ -227,8 +238,8 @@ public class Player_Movement : MonoBehaviour
         
         yield return new WaitForSeconds(0.6f);
         
-        GetComponent<FOD_Agent>().EndAgent();
-        GetComponent<SpriteRenderer>().sortingOrder = -5;
+        agent.EndAgent();
+        spriteRenderer.sortingOrder = -5;
        
         yield return new WaitForSeconds(0.5f);
         
@@ -249,7 +260,8 @@ public class Player_Movement : MonoBehaviour
     
     private void Move(Vector3 pos)
     {
-        movePoint.position =  pos;
+        movePoint.position = pos;
+        animator.SetBool("isMoving", true);
         
         Vector3 direction = (pos - transform.position).normalized;
         

@@ -21,6 +21,7 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
     [Header("Compounds")]
     public SpriteMask spriteMask;
     public GameObject bloodSplash;
+    private Animator animator;
     
     void Start()
     {
@@ -30,8 +31,9 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
         }
         
         currentDirection = firstDirection;
-        
         spriteMask.enabled = false;
+        
+        animator = GetComponent<Animator>();
     }
     
     private void OnEnable()
@@ -61,6 +63,8 @@ public class Enemy_Spider_Movement : MonoBehaviour, IEnemy, IInteractable
                 isMoving = false; 
             }
         }
+        
+        animator.SetBool("isMoving", isMoving);
     }
     
     public virtual void OnPlayerMoved()

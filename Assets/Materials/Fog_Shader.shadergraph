@@ -247,9 +247,6 @@
             "m_Id": "a16b560e58014a4da58d35fa422dc8bf"
         },
         {
-            "m_Id": "368e54e830b2435bbbfc3ac9fc1f659c"
-        },
-        {
             "m_Id": "5e82f510ef394e6d9c76dd9fb97262f8"
         }
     ],
@@ -520,20 +517,6 @@
                     "m_Id": "0b3009e8dc824aadb4e746e4345036e4"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "5e82f510ef394e6d9c76dd9fb97262f8"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "368e54e830b2435bbbfc3ac9fc1f659c"
-                },
-                "m_SlotId": 2
             }
         },
         {
@@ -2374,49 +2357,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.CustomFunctionNode",
-    "m_ObjectId": "368e54e830b2435bbbfc3ac9fc1f659c",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "LoopIndices (Custom Function)",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -1565.0001220703125,
-            "y": 2152.0,
-            "width": 224.0,
-            "height": 278.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "ecfed7989af94929a31256cfc2cae740"
-        },
-        {
-            "m_Id": "3abd3c9dfd5f45c5b84bfc1b37e5b33e"
-        }
-    ],
-    "synonyms": [
-        "code",
-        "HLSL"
-    ],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_SourceType": 0,
-    "m_FunctionName": "LoopIndices",
-    "m_FunctionSource": "7bc1ee2b0b3d4ab4095be83775ec77a7",
-    "m_FunctionBody": "for (int i = 0; i < maxIterations; i++)\r\n{\r\n    index = (float)i;\r\n}"
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "37a91484baaf43f59e94b0f91dff2c1b",
@@ -2611,21 +2551,6 @@
         "e32": 0.0,
         "e33": 1.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "3abd3c9dfd5f45c5b84bfc1b37e5b33e",
-    "m_Id": 1,
-    "m_DisplayName": "index",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "index",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {
@@ -7360,21 +7285,6 @@
     },
     "m_Space": 4,
     "m_PositionSource": 0
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "ecfed7989af94929a31256cfc2cae740",
-    "m_Id": 2,
-    "m_DisplayName": "maxIterations",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "maxIterations",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
 }
 
 {

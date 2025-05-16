@@ -46,9 +46,10 @@ public class Player_Stats : MonoBehaviour
     {
         playerLives++;
         
-       
         int oldMax = maxStepCount;
         maxStepCount *= 2;
+        
+        healthSlot.sprite = healthSprites[playerLives];
 
         float radius = agent.GetRadius();
         agent.ChangeRadiusValue(radius + radiusShrinkValue);
@@ -76,20 +77,23 @@ public class Player_Stats : MonoBehaviour
         if (stepCount <= 0 )
         {
             playerLives--;
-            healthSlot.sprite = healthSprites[playerLives];
-           
+            
             float radius = agent.GetRadius();
             agent.ChangeRadiusValue(radius - radiusShrinkValue);
             
             if (playerLives <= 0)
             {
                 Player_Movement_Manager.Instance.ActivateCentipedeChase();
-                healthSlot.sprite = healthSprites[0];
+                
+                healthSlot.sprite = healthSprites[playerLives];
+                
                 int oldMax = maxStepCount;
                 maxStepCount = stepCount;
                 StartStepUpdate(oldMax, maxStepCount);
                 return;
             }
+            
+            healthSlot.sprite = healthSprites[playerLives];
             
             stepCount += maxStepCount / 2;
             int oldMax2 = maxStepCount;

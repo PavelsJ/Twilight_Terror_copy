@@ -29,14 +29,19 @@ public class Player_Interaction : MonoBehaviour
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hurt);
         
         yield return new WaitForSeconds(0.2f);
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
         
-        GetComponent<FOD_Agent>().EndAgent();
+        Player_Movement.Instance.animator.SetTrigger("Death");
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
+
+        FOD_Agent agent = GetComponent<FOD_Agent>();
+        if (agent != null)
+        {
+            agent.deactivateOnEnd = true;
+            agent.EndAgent();
+        }
         
         yield return new WaitForSeconds(0.7f);
         
         Player_Movement_Manager.Instance.RestartGame();
-       
-        gameObject.SetActive(false);
     }
 }

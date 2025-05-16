@@ -77,7 +77,7 @@ Material:
     - _Line_Transparency: 12
     - _Noise_Intensity: 0.05
     - _Noise_Scale: 200
-    - _Noise_Transparency: 0.016
+    - _Noise_Transparency: 0.014
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

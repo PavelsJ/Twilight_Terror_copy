@@ -127,7 +127,9 @@ GameObject:
   - component: {fileID: 6837800912479210800}
   - component: {fileID: 8757489666953977120}
   - component: {fileID: 689118820268286501}
+  - component: {fileID: 2439782836348203931}
   - component: {fileID: 1635313435340413070}
+  - component: {fileID: 528606353044562901}
   m_Layer: 10
   m_Name: Enemy_Lurking_Shadow
   m_TagString: Enemy
@@ -193,7 +195,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7dc64b5a23b33ce4790f520e775be2ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f05412ba5793ba84694992ae9fdc21ff, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -274,6 +276,23 @@ MonoBehaviour:
   player: {fileID: 0}
   spriteMask: {fileID: 6837800912479210800}
   bloodSplash: {fileID: 69244725199472706}
+--- !u!114 &2439782836348203931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898453062152712343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c6f39b7ca853045b1b2f2513b512bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: f05412ba5793ba84694992ae9fdc21ff, type: 3}
+  - {fileID: 21300000, guid: f050a31253256f74c823128ea2d59903, type: 3}
+  - {fileID: 21300000, guid: 8040d422d47cec544b87dd68791062f6, type: 3}
+  mask: {fileID: 6837800912479210800}
 --- !u!61 &1635313435340413070
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -319,3 +338,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!95 &528606353044562901
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898453062152712343}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e608b31aba9b9fd46b7bf22185d5acca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

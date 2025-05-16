@@ -10,6 +10,11 @@ public class Menu_Manager : MonoBehaviour
     public int defaultSceneIndex = 1;
     public Button continueButton;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     private void Start()
     {
         if(continueButton == null) return;

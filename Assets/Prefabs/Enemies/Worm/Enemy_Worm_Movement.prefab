@@ -49,4 +49,4 @@ MonoBehaviour:
   wormTailPrefab: {fileID: 8338845204302720353, guid: 8a208745edb5bac4d916cf7852813e26, type: 3}
   minSegments: 2
   maxSegments: 4
-  spacing: 1
+  stepInterval: 1

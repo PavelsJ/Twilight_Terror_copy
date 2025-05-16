@@ -17,6 +17,7 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
     [Header("Compounds")]
     public GameObject lightBulb;
     public GameObject bloodSplash;
+    private Animator animator;
     
     public void Init(Transform target, System.Action<GameObject> callback)
     {
@@ -39,6 +40,8 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
         {
             movePoint.parent = PathFinding_Manager.Instance.transform;
         }
+        
+        animator = GetComponent<Animator>();
     }
     
     private void OnDisable()
@@ -65,6 +68,8 @@ public class Enemy_Larvae_Movement : MonoBehaviour, IEnemy, IInteractable
                 }
             }
         }
+        
+        animator.SetBool("isMoving", isMoving);
     }
     
     public void OnPlayerMoved()

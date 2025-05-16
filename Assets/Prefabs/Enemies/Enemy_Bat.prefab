@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7579501013972642938}
   - component: {fileID: 6449860205396478463}
   - component: {fileID: 2725593444916502642}
+  - component: {fileID: 8627746499910772656}
   m_Layer: 10
   m_Name: Enemy_Bat
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 279684ebc1e5c8c40912d6a8dfe0c91e, type: 3}
+  m_Sprite: {fileID: 1439211404, guid: 03f2f2fc1f6d04eaca1542b491b882ce, type: 3}
   m_MaskAlphaCutoff: 1
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -129,7 +130,7 @@ SpriteRenderer:
   m_SortingLayerID: 1535477347
   m_SortingLayer: 2
   m_SortingOrder: 10
-  m_Sprite: {fileID: -1110458663, guid: 578a07aeb1192bc489ba1c02807d521c, type: 3}
+  m_Sprite: {fileID: 1335667703, guid: 6312115d15fcb4ed8b06f3941f2caf00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,6 +207,27 @@ MonoBehaviour:
     m_Bits: 2048
   spriteMask: {fileID: 5529628932470405732}
   bloodSplash: {fileID: 411243122929740054}
+--- !u!95 &8627746499910772656
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822726050407997074}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c19dd1d6c8c7d94fb6bee57f75556b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7481929116189779360
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7579501013972642938}
   - component: {fileID: 6449860205396478463}
   - component: {fileID: 3531282558951557482}
+  - component: {fileID: 6849822741623869693}
+  - component: {fileID: 6443495558259154276}
   m_Layer: 10
   m_Name: Enemy_Spider
   m_TagString: Enemy
@@ -78,8 +80,8 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 279684ebc1e5c8c40912d6a8dfe0c91e, type: 3}
-  m_MaskAlphaCutoff: 1
+  m_Sprite: {fileID: 512202539, guid: 71891ae474ec24a2fa58121fa9e3f825, type: 3}
+  m_MaskAlphaCutoff: 0.5
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
@@ -129,12 +131,12 @@ SpriteRenderer:
   m_SortingLayerID: 1535477347
   m_SortingLayer: 2
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 1f5fb1b2a14970b42909aedb48af2ce9, type: 3}
+  m_Sprite: {fileID: 741879471, guid: 15a3c3d245fb64befa4a6a3b1df7d853, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -177,7 +179,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -206,6 +208,43 @@ MonoBehaviour:
     m_Bits: 2240
   spriteMask: {fileID: 5529628932470405732}
   bloodSplash: {fileID: 411243122929740054}
+--- !u!114 &6849822741623869693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822726050407997074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c6f39b7ca853045b1b2f2513b512bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 512202539, guid: 71891ae474ec24a2fa58121fa9e3f825, type: 3}
+  - {fileID: 475541035, guid: 71891ae474ec24a2fa58121fa9e3f825, type: 3}
+  mask: {fileID: 5529628932470405732}
+--- !u!95 &6443495558259154276
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822726050407997074}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e41f93eef87c93b4191696de36d949e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7481929116189779360
 GameObject:
   m_ObjectHideFlags: 0

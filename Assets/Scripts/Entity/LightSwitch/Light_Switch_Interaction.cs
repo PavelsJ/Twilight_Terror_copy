@@ -88,4 +88,9 @@ public class Light_Switch_Interaction : MonoBehaviour
             Player_Movement_Manager.Instance.isInvulnerable = true;
         }
     }
+
+    public void DeactivateSwitch()
+    {
+        GetComponent<FOD_Agent>().EndAgent();
+    }
 }

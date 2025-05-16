@@ -44,7 +44,7 @@ public class Mimic_Cutscene2_Script : Change_Room_Script
         
         yield return new WaitForSeconds(transitionTime);
         
-        gridInteraction.ChangeSectorState(0);
+        gridInteraction.ChangeSectorState(nextRoomIndex);
         player.GetComponent<FOD_Agent>().SetMaxRadiusValue();
     }
 }

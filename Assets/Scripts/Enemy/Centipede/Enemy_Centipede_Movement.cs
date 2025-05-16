@@ -21,6 +21,7 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
     
     [Header("Compounds")]
     public Copy_Centipede_Movement copy;
+    public Animator animator;
     
     void Start()
     {
@@ -28,7 +29,7 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
         
         if (movePoint != null)
         {
-            movePoint.parent = null;
+            movePoint.parent = PathFinding_Manager.Instance.transform;
         }
     }
     
@@ -77,6 +78,8 @@ public class Enemy_Centipede_Movement : MonoBehaviour, IEnemy
                 spriteMask.enabled = distanceToPlayer <= detectionRange;
             }
         }
+        
+        animator.SetBool("isMoving", isMoving);
     }
     
     private void RotateSprite(Vector3 direction)

@@ -660,9 +660,9 @@ MonoBehaviour:
   playerLives: 2
   healthSlot: {fileID: 1459099853}
   healthSprites:
-  - {fileID: 2046970316, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
-  - {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
   - {fileID: 1581913668, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 500488165, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
+  - {fileID: 2046970316, guid: bae48a3585d31a44dad18ece75fac8ee, type: 3}
   stepCountText: {fileID: 1204379819}
 --- !u!1 &134725276
 GameObject:
@@ -2516,68 +2516,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6392852574502977524, guid: edcbdedf61bdb094a9e48b3cfec75ef9, type: 3}
   m_PrefabInstance: {fileID: 402664295}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &418317855
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 469829181}
-    m_Modifications:
-    - target: {fileID: 4713067512451778921, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_Name
-      value: Light_Bulb (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 25.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
---- !u!4 &418317856 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6425736703148776820, guid: 50e91ff3fe598f440ba1af349ec5bfe2, type: 3}
-  m_PrefabInstance: {fileID: 418317855}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &453509848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2776,7 +2714,6 @@ Transform:
   - {fileID: 58194839}
   - {fileID: 2072937852}
   - {fileID: 72649466}
-  - {fileID: 418317856}
   - {fileID: 6181892951143227859}
   - {fileID: 1426390898}
   - {fileID: 1279366329}
@@ -26101,15 +26038,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.18750001
+    x: 0.26145834
     y: 0
-    width: 0.62500006
-    height: 1
+    width: 0.20833334
+    height: 0.28333333
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.2187495
+  orthographic size: 4.78125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

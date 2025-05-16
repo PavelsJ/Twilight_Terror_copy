@@ -43,8 +43,10 @@ GameObject:
   - component: {fileID: 6526951336491576863}
   - component: {fileID: 5290661461794868536}
   - component: {fileID: 5178345739204706201}
+  - component: {fileID: 2064780725365583835}
   - component: {fileID: -5154088395734320162}
   - component: {fileID: -6210283841697779677}
+  - component: {fileID: 547807538898868438}
   m_Layer: 10
   m_Name: Worm_Head
   m_TagString: Enemy
@@ -109,7 +111,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 149dc02833657814fbafea7c1566849a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 546b94115fb9be547a20b87094fb2f4b, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -186,6 +188,22 @@ MonoBehaviour:
   speed: 5
   movePoint: {fileID: 6974790588721776443}
   isMoving: 0
+--- !u!114 &2064780725365583835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338845204302720353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c6f39b7ca853045b1b2f2513b512bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 546b94115fb9be547a20b87094fb2f4b, type: 3}
+  - {fileID: 21300000, guid: 420d2edbc981f904c8da10a0b7367c11, type: 3}
+  mask: {fileID: 6526951336491576863}
 --- !u!61 &-5154088395734320162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -258,3 +276,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &547807538898868438
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338845204302720353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa2c8e0f5c23a8445aeaffc92761ecce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

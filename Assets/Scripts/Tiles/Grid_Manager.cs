@@ -20,9 +20,10 @@ public class Grid_Manager : MonoBehaviour
     
     private readonly List<SectorPosGroup> sectorGroups = new();
     private Vector2 firstPos;
+    private int currentSector = 0;
     
     private float transitionDuration;
-    private bool isStart = true;
+    private bool isStart = false;
     
     [Header("Definition")]
     private static readonly Vector2 DEFAULT_PLAYER_POS = new Vector2(-4.5f, 1.5f);
@@ -66,6 +67,14 @@ public class Grid_Manager : MonoBehaviour
         }
         
         firstPos = DEFAULT_SECTOR_POS;
+
+        StartCoroutine(MovementCoroutine());
+    }
+
+    private IEnumerator MovementCoroutine()
+    {
+        yield return new WaitForSeconds(1.4f);
+        isStart = true;
     }
 
     void Update()
@@ -125,6 +134,7 @@ public class Grid_Manager : MonoBehaviour
     private void PlaceSector(Transform sector, Vector2 targetPos)
     {
         sector.position = targetPos;
+        currentSector += 1;
     }
 
     public void ResetSectorsState()
