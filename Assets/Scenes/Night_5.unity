@@ -2046,7 +2046,7 @@ PrefabInstance:
     - target: {fileID: 2302050599093417431, guid: cd299303d6366b843bb292cc763aff75, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: bba97cc586235c74ba067820652facb3, type: 2}
     - target: {fileID: 2455056542533617824, guid: cd299303d6366b843bb292cc763aff75, type: 3}
       propertyPath: speed
       value: 2
@@ -4219,7 +4219,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7536090361638786652, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
   m_PrefabInstance: {fileID: 2039990208}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2039990209}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c445fd7fd6bdd848a87083b1831110a, type: 3}
@@ -5858,7 +5858,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 1
-  startOffset: 3
 --- !u!483693784 &744655268
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -8365,7 +8364,7 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: -1476306668, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1228498345, guid: 96096bf2c3e789f4e80b703b40b432b7, type: 3}
+    m_Data: {fileID: 1208035546, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1708324063, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
   - m_RefCount: 5
@@ -8769,7 +8768,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "So confident after the easy part... \nhow quaint"
+  m_text: "Barely made it, huh? \nAdorable"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 296809266c5becb45bd625676ab65a77, type: 2}
   m_sharedMaterial: {fileID: -5901966524951469792, guid: 296809266c5becb45bd625676ab65a77, type: 2}
@@ -11652,10 +11651,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_HighlightedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    m_PressedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_SelectedColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    m_DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -11706,8 +11705,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: cdc051e0cafa14542a85fc1de83a4e04, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -20687,7 +20686,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
       m_TileObjectToInstantiateIndex: 3
@@ -21947,7 +21946,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
       m_TileObjectToInstantiateIndex: 3
@@ -22517,7 +22516,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
       m_TileObjectToInstantiateIndex: 3
@@ -22687,7 +22686,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 10
-      m_TileSpriteIndex: 23
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 4
       m_TileColorIndex: 4
       m_TileObjectToInstantiateIndex: 3
@@ -23084,10 +23083,10 @@ Tilemap:
     m_Data: {fileID: -1708324063, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -969523049, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 5
     m_Data: {fileID: 1208035546, guid: f3562b4748dc8a24397b23b968c82c29, type: 3}
-  - m_RefCount: 4
-    m_Data: {fileID: 1228498345, guid: 96096bf2c3e789f4e80b703b40b432b7, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -451184041, guid: b8269c2843dce754280de37b4f8a9b57, type: 3}
   - m_RefCount: 4
@@ -23296,7 +23295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 1
-  startOffset: 3
 --- !u!114 &1612233808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23672,8 +23670,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -26082,7 +26080,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 1
-  startOffset: 3
 --- !u!483693784 &1911990377
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -28274,6 +28271,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6677171853373000933, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 627476369, guid: 4e0cae8f128fc924b809de4e2c780351, type: 3}
     - target: {fileID: 7536090361638786652, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
       propertyPath: switchParts.Array.data[0]
       value: 
@@ -28289,8 +28290,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9104826358172491081, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2039990210}
   m_SourcePrefab: {fileID: 100100000, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
+--- !u!1 &2039990209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9104826358172491081, guid: ec7b7dfa996387041989e76e8ccdbf7a, type: 3}
+  m_PrefabInstance: {fileID: 2039990208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2039990210
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039990209}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bba97cc586235c74ba067820652facb3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2046686982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28479,15 +28509,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7eba767ff1dd72841932b7cceaa49b8a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -28668,15 +28698,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.24687502
+    x: 0.18750001
     y: 0
-    width: 0.20833334
-    height: 0.4361111
+    width: 0.62500006
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.6796875
+  orthographic size: 4.2187495
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

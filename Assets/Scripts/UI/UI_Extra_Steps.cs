@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Extra_Steps : MonoBehaviour
+public class UI_Extra_Steps : UI_Item
 {
     public int extraSteps;
     public int extraLives;
 
-    public int GetSteps()
+    public override void UseItem()
     {
-        RemoveItem();
-        return extraSteps;
-    }
-    
-    public int GetLives()
-    {
-        RemoveItem();
-        return extraLives;
+        Player_Movement_Manager.Instance.AddSteps(extraSteps);
+
+        if (extraLives> 0)
+        {
+            Player_Movement_Manager.Instance.AddLife();
+        }
     }
 
     private void RemoveItem()

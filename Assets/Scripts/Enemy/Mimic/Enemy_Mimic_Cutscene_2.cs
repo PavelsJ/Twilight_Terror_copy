@@ -15,6 +15,8 @@ public class Enemy_Mimic_Cutscene_2 : Enemy_Mimic_Cutscene
     {
         StartCoroutine(MimicParts());
         
+        GetComponent<SpriteRenderer>().flipX = false;
+        
         Vector3 peakPos = transform.position;
         float distance = Vector3.Distance(peakPos, target.position);
         float moveDuration = distance / speed;

@@ -7,6 +7,13 @@ using Random = UnityEngine.Random;
 
 public class Player_Interaction : MonoBehaviour
 {
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Interactable") && !UI_Inventory.Instance.IsInventoryFull())
@@ -30,7 +37,7 @@ public class Player_Interaction : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
         
-        Player_Movement.Instance.animator.SetTrigger("Death");
+        GetComponent<Animator>().SetTrigger("Death");
         Music_Manager.instance.PlaySound(Music_Manager.SoundType.Twilight);
 
         FOD_Agent agent = GetComponent<FOD_Agent>();

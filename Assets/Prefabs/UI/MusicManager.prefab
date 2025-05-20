@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1855853918686684406}
   sfxSource: {fileID: 8147715178470629687}
+  audioMixer: {fileID: 24100000, guid: 825bd33acf28d924795cdcb2f009f0e6, type: 2}
   mainThemeMusic: {fileID: 8300000, guid: 6dc7f3da3219af443ae494affb0385f8, type: 3}
   ambientMusic: {fileID: 8300000, guid: 74aec4606952f4af1ba8d3c7d9581b43, type: 3}
   chaseMusic: {fileID: 8300000, guid: b64a054737fb942e0b9cf0aeb5f44e01, type: 3}

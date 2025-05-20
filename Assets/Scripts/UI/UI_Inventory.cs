@@ -79,7 +79,7 @@ public class UI_Inventory : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Недостаточно слотов для добавления предмета!");
+                Debug.LogWarning("Недостаточно слотов для добавления предмета");
                 break;
             }
         }
@@ -93,43 +93,44 @@ public class UI_Inventory : MonoBehaviour
             
             GameObject child = itemSlots[selectedSlotIndex].transform.GetChild(0).gameObject;
             
-            var extraComponent = child.GetComponent<UI_Extra_Steps>();
-            int steps = extraComponent.extraSteps;
-            int lives = extraComponent.extraLives;
-
-            Player_Movement_Manager.Instance.AddSteps(steps);
-
-            if (lives > 0)
+            var item = child.GetComponent<UI_Item>();
+            if (item != null)
             {
-                Player_Movement_Manager.Instance.AddLife();
+                item.UseItem();
             }
 
             Destroy(child);
-            
-            for (int i = selectedSlotIndex; i < currentSlotIndex - 1; i++)
-            {
-                if (itemSlots[i + 1].transform.childCount > 0)
-                {
-                    Transform movingItem = itemSlots[i + 1].transform.GetChild(0);
-                    movingItem.SetParent(itemSlots[i].transform);
-                    movingItem.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-                }
-            }
 
-            currentSlotIndex--;
-
-            if (currentSlotIndex > 0)
-            {
-                selectedSlotIndex = Mathf.Clamp(selectedSlotIndex, 0, currentSlotIndex - 1);
-            }
+            ShiftItems();
 
             UpdateSelection();
         }
         else
         {
-            Debug.LogWarning("Выбранный слот пуст или некорректен!");
+            Debug.LogWarning("Выбранный слот пуст или некорректен");
         }
     }
+
+    private void ShiftItems()
+    {
+        for (int i = selectedSlotIndex; i < currentSlotIndex - 1; i++)
+        {
+            if (itemSlots[i + 1].transform.childCount > 0)
+            {
+                Transform movingItem = itemSlots[i + 1].transform.GetChild(0);
+                movingItem.SetParent(itemSlots[i].transform);
+                movingItem.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            }
+        }
+
+        currentSlotIndex--;
+
+        if (currentSlotIndex > 0)
+        {
+            selectedSlotIndex = Mathf.Clamp(selectedSlotIndex, 0, currentSlotIndex - 1);
+        }
+    }
+    
 
     private void UpdateSelection()
     {

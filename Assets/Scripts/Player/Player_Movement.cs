@@ -36,7 +36,7 @@ public class Player_Movement : MonoBehaviour
     private float footstepTimer = 0f;
     
     [Header("Compounds")]
-    public Animator animator;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private FOD_Agent agent;
     

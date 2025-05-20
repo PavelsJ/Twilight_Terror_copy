@@ -31,7 +31,7 @@ namespace FODMapping
         private RenderTexture fogTexture;
 
         [Header("Agent Dictionary")] 
-        public List<FOD_Agent> agents = new();
+        private List<FOD_Agent> agents = new();
         private const int maxAgentCount = 128;
 
         [Header("Buffers")] 
@@ -197,14 +197,7 @@ namespace FODMapping
         
         public void SetFogVisibility(bool visible)
         {
-            if (visible)
-            {
-                animator.SetTrigger("FadeIn");
-            }
-            else
-            {
-                animator.SetTrigger("FadeOut");
-            }
+            animator.SetTrigger(visible ? "FadeIn" : "FadeOut");
         }
 
         private void OnDestroy()

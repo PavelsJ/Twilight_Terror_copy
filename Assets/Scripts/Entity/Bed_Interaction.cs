@@ -22,8 +22,7 @@ public class Bed_Interaction : MonoBehaviour
     {
         if (endScene && other.gameObject.CompareTag("Player"))
         {
-            SaveNight();
-            StartCoroutine(OnNextScene());
+            EndNight();
         }
     }
 
@@ -47,12 +46,19 @@ public class Bed_Interaction : MonoBehaviour
         
         Debug.Log("NightCount: " + PlayerPrefs.GetInt("NightCount"));
     }
+
+    public void EndNight()
+    {
+        SaveNight();
+        StartCoroutine(OnNextScene());
+    }
     
     private IEnumerator OnNextScene()
     {
         if (manager != null)
         {
             Player_Movement.Instance.isDisable = true;
+            manager.GetComponent<SpriteRenderer>().color = Color.white;
             manager.SetFogVisibility(true);
             yield return new WaitForSeconds(1.2f);
             

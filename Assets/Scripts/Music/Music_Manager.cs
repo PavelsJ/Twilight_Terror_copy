@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Music_Manager : MonoBehaviour
 {
     public static Music_Manager instance;
     
+    
     public AudioSource musicSource;
     public AudioSource sfxSource;
+    public AudioMixer audioMixer;
 
     [Header("Music")]
     public AudioClip mainThemeMusic;
@@ -59,7 +62,6 @@ public class Music_Manager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            
             SceneManager.sceneLoaded += OnSceneChange; 
         }
         else
@@ -72,8 +74,17 @@ public class Music_Manager : MonoBehaviour
 
      void Start()
     {
-        
+        ApplySavedVolumes();
         UpdateMusic(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+    }
+     
+    private void ApplySavedVolumes()
+    {
+        float musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.75f);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+
+        audioMixer.SetFloat("music", Mathf.Log10(musicVolume) * 20);
+        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume) * 20);
     }
 
     private void OnSceneChange(Scene scene, LoadSceneMode mode)

@@ -28,6 +28,7 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
     
     public SpriteMask spriteMask;
     public GameObject bloodSplash;
+    private Animator animator;
     
     private FOD_Agent agent;
     
@@ -57,6 +58,7 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
     {
         movePoint.parent = PathFinding_Manager.Instance.transform;
         agent = GetComponent<FOD_Agent>();
+        animator = GetComponent<Animator>();
 
         foreach (var t in mimicParts)
         {
@@ -91,6 +93,8 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
         {
             TrySwapWithPlayer();
         }
+        
+        animator.SetBool("isMoving", isMoving);
     }
    
     private void MoveTowardsTarget()
