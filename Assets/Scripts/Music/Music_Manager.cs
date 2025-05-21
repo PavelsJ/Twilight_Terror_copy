@@ -8,7 +8,6 @@ public class Music_Manager : MonoBehaviour
 {
     public static Music_Manager instance;
     
-    
     public AudioSource musicSource;
     public AudioSource sfxSource;
     public AudioMixer audioMixer;
@@ -18,6 +17,8 @@ public class Music_Manager : MonoBehaviour
     public AudioClip ambientMusic;
     public AudioClip chaseMusic;
     public AudioClip shadowMusic;
+    public AudioClip bossMusic;
+    public AudioClip satisfactionMusic;
     
     private MusicState currentMusicState;
     private MusicState previousMusicState;
@@ -27,15 +28,17 @@ public class Music_Manager : MonoBehaviour
     private Dictionary<SoundType, AudioClip[]> soundDictionary;
     
     [Header("Fade Settings")]
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 0.5f;
     private Coroutine musicTransitionCoroutine;
     
-    private enum MusicState
+    public enum MusicState
     {
         MainTheme,
         Ambient,
         Chase,
-        Shadow
+        Shadow,
+        Boss,
+        Satisfaction
     }
     
     public enum SoundType
@@ -52,7 +55,10 @@ public class Music_Manager : MonoBehaviour
         PickUp,
         ItemExpire,
         Chest,
-        Trap
+        Trap,
+        Whisper,
+        Blaze,
+        Box
     }
     
     
@@ -100,12 +106,11 @@ public class Music_Manager : MonoBehaviour
             SetMusic(ambientMusic, MusicState.Ambient);
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, MusicState state)
     {
         if (clip == musicSource.clip) return;
 
-        musicSource.clip = clip;
-        musicSource.Play();
+        SetMusic(clip, state);
     }
 
     public void PlaySound(SoundType type, float pitch = 1f)
@@ -115,6 +120,23 @@ public class Music_Manager : MonoBehaviour
 
         sfxSource.pitch = pitch;
         sfxSource.PlayOneShot(clip);
+    }
+    
+    public void PlayOneSound(SoundType type, int index = 0,float pitch = 1f)
+    {
+        if (soundDictionary.TryGetValue(type, out AudioClip[] clips))
+        {
+            if (clips != null && clips.Length > index)
+            {
+                AudioClip clip = clips[index];
+                sfxSource.pitch = pitch;
+                sfxSource.PlayOneShot(clip);
+            }
+            else
+            {
+                Debug.LogWarning($"Index {index} outside the bounds of {type}.");
+            }
+        }
     }
 
     private void InitializeSoundDictionary()
@@ -180,7 +202,7 @@ public class Music_Manager : MonoBehaviour
 
     public void SetToAmbientMusic()
     {
-        SetMusic(ambientMusic, MusicState.Ambient);
+        SetMusic(satisfactionMusic, MusicState.Satisfaction);
     }
 
     public void SetCurrentStateMusic()

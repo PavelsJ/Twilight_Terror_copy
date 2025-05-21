@@ -173,7 +173,9 @@ public class Enemy_Mimic_Boss : MonoBehaviour, IEnemy
     {
         Player_Movement.Instance.isDisable = true;
         shakeCameraManager.ShakeCamera(0.5f);
-
+        
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Whisper, 1);
+        
         Vector3 retreatPosition = originalPosition + Vector3.right;
         movePoint.position = retreatPosition;
         isMoving = true;
@@ -181,7 +183,7 @@ public class Enemy_Mimic_Boss : MonoBehaviour, IEnemy
         while (isMoving) yield return null;
 
         yield return new WaitForSeconds(0.2f);
-
+        
         movePoint.position = originalPosition;
         isMoving = true;
 
@@ -195,6 +197,8 @@ public class Enemy_Mimic_Boss : MonoBehaviour, IEnemy
     {
         Player_Movement.Instance.isDisable = true;
         shakeCameraManager.ShakeCamera(0.2f);
+        
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Whisper);
         
         int tentacleCount = Random.Range(tentaclesPerAttackMin, tentaclesPerAttackMax);
         HashSet<Vector2Int> usedPositions = new HashSet<Vector2Int>();

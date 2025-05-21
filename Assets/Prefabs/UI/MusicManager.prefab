@@ -181,6 +181,8 @@ MonoBehaviour:
   ambientMusic: {fileID: 8300000, guid: 74aec4606952f4af1ba8d3c7d9581b43, type: 3}
   chaseMusic: {fileID: 8300000, guid: b64a054737fb942e0b9cf0aeb5f44e01, type: 3}
   shadowMusic: {fileID: 8300000, guid: c2c392d4ec07d40528432c3bda4bc466, type: 3}
+  bossMusic: {fileID: 8300000, guid: 93c076024af4e0e44bebc9881d02815a, type: 3}
+  satisfactionMusic: {fileID: 8300000, guid: 51869d65e651d3f47870ac9826869fcd, type: 3}
   soundGroups:
   - type: 2
     clips:
@@ -188,6 +190,7 @@ MonoBehaviour:
   - type: 5
     clips:
     - {fileID: 8300000, guid: 69ea80d658330ce40be7f9c54c8720af, type: 3}
+    - {fileID: 8300000, guid: 9d61de23026fac246b587e021bd5ede1, type: 3}
   - type: 6
     clips:
     - {fileID: 8300000, guid: c5944f5f2acf5d244935b264ffa6ba2a, type: 3}
@@ -226,14 +229,25 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5ca1e3f6c30f8074f848e69ceee3f447, type: 3}
   - type: 11
     clips:
-    - {fileID: 8300000, guid: 1fdba0a6138161d41ae1b30a6257859c, type: 3}
+    - {fileID: 8300000, guid: 313f3da08665e18409ff46b997a3a6b7, type: 3}
   - type: 3
     clips:
     - {fileID: 8300000, guid: ef96a00b1ed22754ea0efdd21581e371, type: 3}
   - type: 12
     clips:
     - {fileID: 8300000, guid: cb50ba9457922be43be5f5731da52872, type: 3}
-  fadeDuration: 0.2
+  - type: 13
+    clips:
+    - {fileID: 8300000, guid: 156dfd3b87cbeb342a935fb06b844acc, type: 3}
+    - {fileID: 8300000, guid: 7e516ffa9d3837a41a3f7f1a93a01b1e, type: 3}
+  - type: 14
+    clips:
+    - {fileID: 8300000, guid: b9f171d7ae32d9f4aafb7c307fc497f1, type: 3}
+    - {fileID: 8300000, guid: d720103a8ec89864b9d195f0cf5c9d50, type: 3}
+  - type: 15
+    clips:
+    - {fileID: 8300000, guid: 2dd0957d45747da4bb6c0231f0f22329, type: 3}
+  fadeDuration: 0.5
 --- !u!1 &4211922334181036204
 GameObject:
   m_ObjectHideFlags: 0

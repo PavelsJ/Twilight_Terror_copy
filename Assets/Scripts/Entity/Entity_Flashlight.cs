@@ -8,7 +8,7 @@ public class Entity_Flashlight : Entity_Motion, IInteractable
     [Header("Flashlight")]
     public GameObject boss;
     public GameObject UIprefab;
-    
+   
     private Animator animator;
     private void Start()
     {
@@ -18,6 +18,7 @@ public class Entity_Flashlight : Entity_Motion, IInteractable
     public void DestroyObject()
     {
         boss.SetActive(true);
+      
         UI_Inventory.Instance.AddItem(UIprefab);
         FadeOut();
     }

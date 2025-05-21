@@ -233,6 +233,8 @@ public class Enemy_Mimic_Movement : MonoBehaviour, IEnemy, IInteractable
             else
             {
                 ResetTarget();
+                
+                Music_Manager.instance.PlaySound(Music_Manager.SoundType.Noise);
             }
         }
     }

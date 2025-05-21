@@ -50,7 +50,7 @@ public class Box_Interaction : MonoBehaviour
         }
         
         PathFinding_Manager.Instance.SetBoxPosition(transform.position, newPosition);
-        
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Box);
         coroutine = StartCoroutine(MoveSmoothly(newPosition));
     }
 

@@ -113,7 +113,7 @@ public class Player_Movement_Manager : MonoBehaviour
     public void ActivateCentipedeChase()
     {
         Music_Manager.instance.SetToChaseMusic();
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Warning,1);
         
         if(enemy != null) enemy.gameObject.SetActive(true);
 
@@ -136,7 +136,7 @@ public class Player_Movement_Manager : MonoBehaviour
         if (enemies.Count > 0)
         {
             Music_Manager.instance.SetToChaseMusic();
-            Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+            Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Warning);
             
             foreach (var enemy in enemies)
             {

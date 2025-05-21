@@ -58,7 +58,6 @@ public class Bed_Interaction : MonoBehaviour
         if (manager != null)
         {
             Player_Movement.Instance.isDisable = true;
-            manager.GetComponent<SpriteRenderer>().color = Color.white;
             manager.SetFogVisibility(true);
             yield return new WaitForSeconds(1.2f);
             

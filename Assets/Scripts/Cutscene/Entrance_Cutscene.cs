@@ -61,8 +61,8 @@ public class Entrance_Cutscene : MonoBehaviour
 
     private void OnSceneEnd()
     {
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.LightSwitch);
-        Music_Manager.instance.SetToAmbientMusic();
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Hurt);
+        Music_Manager.instance.PlayMusic(Music_Manager.instance.ambientMusic, Music_Manager.MusicState.Ambient);
 
         if (cameraManager != null)
         {

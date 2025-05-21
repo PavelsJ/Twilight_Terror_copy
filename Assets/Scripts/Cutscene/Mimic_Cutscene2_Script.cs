@@ -28,14 +28,14 @@ public class Mimic_Cutscene2_Script : Change_Room_Script
         lightDestruction.OnCutscene1();
        
         yield return new WaitForSeconds(0.6f);
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Warning);
         lightDestruction.OnCutscene2();
         
         yield return new WaitForSeconds(0.6f);
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Warning);
         
         yield return new WaitForSeconds(0.8f);
-        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Warning);
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Warning);
         
         yield return new WaitForSeconds(0.4f);
         lightDestruction.OnCutscene3();
