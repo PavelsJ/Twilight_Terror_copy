@@ -8,7 +8,7 @@ public class Shake_Camera_Manager : MonoBehaviour
 {
     private CinemachineVirtualCamera cinemachine;
     private CinemachineBasicMultiChannelPerlin perlin;
-    
+   
     private void Awake()
     {
         cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();

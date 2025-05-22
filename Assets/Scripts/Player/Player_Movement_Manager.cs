@@ -56,14 +56,9 @@ public class Player_Movement_Manager : MonoBehaviour
             NotifyEnemiesOfPlayerMove();
         }
         
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ActivateFog();
         }
     }
 

@@ -58,7 +58,8 @@ public class Music_Manager : MonoBehaviour
         Trap,
         Whisper,
         Blaze,
-        Box
+        Box,
+        Button
     }
     
     

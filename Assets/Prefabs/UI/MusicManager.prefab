@@ -247,6 +247,11 @@ MonoBehaviour:
   - type: 15
     clips:
     - {fileID: 8300000, guid: 2dd0957d45747da4bb6c0231f0f22329, type: 3}
+  - type: 16
+    clips:
+    - {fileID: 8300000, guid: 4fe8e72faf54ae34d9f2cf1e83a9d366, type: 3}
+    - {fileID: 8300000, guid: 5c7962ae70efdaf409ab77e9e630561b, type: 3}
+    - {fileID: 8300000, guid: b848125e56994aa47ac61a775ac0c57f, type: 3}
   fadeDuration: 0.5
 --- !u!1 &4211922334181036204
 GameObject:

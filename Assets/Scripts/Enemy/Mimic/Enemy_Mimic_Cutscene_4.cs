@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,12 @@ public class Enemy_Mimic_Cutscene_4 : MonoBehaviour
         animator = GetComponent<Animator>();
         ps.Stop();
     }
-    
+
+    private void OnEnable()
+    {
+        Music_Manager.instance.PlayOneSound(Music_Manager.SoundType.Whisper);
+    }
+
     public void DeactivateMimic()
     {
         ps.Stop();

@@ -23,11 +23,15 @@ public class Menu_Manager : MonoBehaviour
 
     public void OpenScene(string sceneName)
     {
+        PlayButtonSound();
+        
         SceneManager.LoadScene(sceneName);
     }
 
     public void OpenRecentScene()
     {
+        PlayButtonSound();
+        
         if (PlayerPrefs.HasKey("SceneSave"))
         {
             SceneManager.LoadScene(PlayerPrefs.GetInt("SceneSave"));
@@ -40,6 +44,12 @@ public class Menu_Manager : MonoBehaviour
     
     public void QuitApp()
     {
+        PlayButtonSound();
         Application.Quit();
+    }
+
+    private void PlayButtonSound()
+    {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Button);
     }
 }

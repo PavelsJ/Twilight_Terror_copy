@@ -41,6 +41,12 @@ public class UI_Pause : MonoBehaviour
 
     private void UnfreezeGame()
     {
+        PlayButtonSound();
         Time.timeScale = 1f;
+    }
+    
+    private void PlayButtonSound()
+    {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Button);
     }
 }

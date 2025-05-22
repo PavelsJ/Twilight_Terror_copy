@@ -69,7 +69,13 @@ public class Save_Manager : MonoBehaviour
     
     public void DeleteAllSaves()
     {
+        PlayButtonSound();
         PlayerPrefs.DeleteAll();
         Debug.Log("Deleted all saves");
+    }
+    
+    private void PlayButtonSound()
+    {
+        Music_Manager.instance.PlaySound(Music_Manager.SoundType.Button);
     }
 }
